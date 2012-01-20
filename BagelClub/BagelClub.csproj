@@ -37,6 +37,9 @@
     <Reference Include="Dapper">
       <HintPath>..\packages\Dapper.1.8\lib\net40\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="FluentScheduler">
+      <HintPath>..\packages\FluentScheduler.1.0.7\lib\FluentScheduler.dll</HintPath>
+    </Reference>
     <Reference Include="Laughlin.Common">
       <HintPath>..\packages\Laughlin.Common.1.0.826\lib\Laughlin.Common.dll</HintPath>
     </Reference>
@@ -80,8 +83,11 @@
     <Compile Include="Models\ShoppingListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BagellerService.cs" />
+    <Compile Include="Tasks\TaskRegistry.cs" />
+    <Compile Include="Tasks\WeekStartReminderTask.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="emails\template.html" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

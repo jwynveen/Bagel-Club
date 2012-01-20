@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using BagelClub.Tasks;
+using FluentScheduler;
+using Laughlin.Common.Extensions;
 
 namespace BagelClub
 {
@@ -35,6 +39,11 @@ namespace BagelClub
 
 			RegisterGlobalFilters(GlobalFilters.Filters);
 			RegisterRoutes(RouteTable.Routes);
+
+			if (!Environment.MachineName.SafeEquals(ConfigurationManager.AppSettings["RunScheduledTasksFromMachineName"], StringComparison.OrdinalIgnoreCase))
+				return;
+
+			TaskManager.Initialize(new TaskRegistry());
 		}
 	}
 }
