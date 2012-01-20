@@ -1,4 +1,5 @@
-﻿@{
+﻿@model HomeModel
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -6,3 +7,10 @@
 <p>
     To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
 </p>
+<div style="width:45%; float:left;">
+	@Html.Partial("_UpcomingBagellers", Model.Bagellers)
+</div>
+<div style="width:45%; float:left;">
+	@Html.Partial("_ShoppingList", Model.ShoppingList)
+</div>
+<div class="clear"></div>

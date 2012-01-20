@@ -1,0 +1,16 @@
+﻿@model ShoppingListModel
+<h2>Shopping List</h2>
+@if (Model.Locations.Any()){
+<ul>
+@foreach(var location in Model.Locations){
+	<li>
+		<h3>@location.Name</h3>
+		<ul>
+		@foreach (var bagel in location.Bagels) { 
+			<li>@bagel.Key - @bagel.Value</li>
+		}
+		</ul>
+	</li>
+}
+</ul>
+}

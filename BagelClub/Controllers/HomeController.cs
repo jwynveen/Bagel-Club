@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BagelClub.Models;
+using BagelClub.Services;
 
 namespace BagelClub.Controllers
 {
@@ -10,9 +12,16 @@ namespace BagelClub.Controllers
 	{
 		public ActionResult Index()
 		{
-			ViewBag.Message = "Welcome to ASP.NET MVC!";
+			var model = new HomeModel
+							{
+								Bagellers = new BagellerService().FetchAll(),
+								ShoppingList = new ShoppingListModel
+								               	{
+								               		Locations = new List<BagelShop>()
+								               	}
+							};
 
-			return View();
+			return View(model);
 		}
 
 		public ActionResult About()
