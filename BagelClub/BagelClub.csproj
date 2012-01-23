@@ -40,6 +40,12 @@
     <Reference Include="FluentScheduler">
       <HintPath>..\packages\FluentScheduler.1.0.7\lib\FluentScheduler.dll</HintPath>
     </Reference>
+    <Reference Include="Glimpse.Core">
+      <HintPath>..\packages\Glimpse.0.86\lib\net40\Glimpse.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Glimpse.Mvc3">
+      <HintPath>..\packages\Glimpse.Mvc3.0.86\lib\net40\Glimpse.Mvc3.dll</HintPath>
+    </Reference>
     <Reference Include="Laughlin.Common">
       <HintPath>..\packages\Laughlin.Common.1.0.826\lib\Laughlin.Common.dll</HintPath>
     </Reference>
@@ -88,6 +94,8 @@
     <Compile Include="Tasks\WeekStartReminderTask.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Readme\glimpse.mvc3.readme.txt" />
+    <Content Include="App_Readme\glimpse.readme.txt" />
     <Content Include="emails\template.html" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
