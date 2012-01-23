@@ -13,14 +13,31 @@ namespace BagelClub.Controllers
 	{
 		public ActionResult Index()
 		{
+			var bagellers = new BagellerService().FetchAll();
+
+			var brueggers = new BagelShop("Bruegger's");
+			var einstein = new BagelShop("Einstein");
+			var sendiks = new BagelShop("Sendik's");
+
+			foreach (var bageller in bagellers)
+			{
+				brueggers.AddBagel(bageller.Breuggers);
+				einstein.AddBagel(bageller.Einstein);
+				sendiks.AddBagel(bageller.Sendiks);
+			}
 			var model = new HomeModel
-							{
-								Bagellers = new BagellerService().FetchAll(),
-								ShoppingList = new ShoppingListModel
-								               	{
-								               		Locations = new List<BagelShop>()
-								               	}
-							};
+			            	{
+			            		Bagellers = bagellers,
+			            		ShoppingList = new ShoppingListModel
+			            		               	{
+			            		               		Locations = new List<BagelShop>
+			            		               		            	{
+			            		               		            		brueggers,
+			            		               		            		einstein,
+			            		               		            		sendiks
+			            		               		            	}
+			            		               	}
+			            	};
 
 			return View(model);
 		}
