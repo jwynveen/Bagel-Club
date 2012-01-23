@@ -34,7 +34,7 @@ namespace BagelClub.Controllers
 		{
 			var bagellers = new BagellerService().FetchAll();
 			var emailList = string.Join(",", bagellers.Select(x => x.Email));
-			emailList = "jwynveen@laughlin.com";
+			//emailList = "jwynveen@laughlin.com";
 			var nextBageller = bagellers.First();
 
 			var subject = "This Week's Bageller is: " + nextBageller.Name;
