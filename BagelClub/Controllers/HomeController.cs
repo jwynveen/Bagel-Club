@@ -43,7 +43,7 @@ namespace BagelClub.Controllers
 			var body = new StringBuilder();
 			body.Append("<h1>Upcoming Bagellers:</h1>");
 			body.Append("<table border=\"0\">");
-			foreach (var bageller in bagellers.Skip(1))
+			foreach (var bageller in bagellers)
 			{
 				body.Append("<tr><th style='text-align:left;'>{0}</th><td>{1}</td></tr>"
 									.FormatWith(bageller.NextPurchaseDate.ToShortDateString(), bageller.Name));
