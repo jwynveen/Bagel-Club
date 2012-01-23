@@ -89,6 +89,7 @@
     <Compile Include="Models\ShoppingListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BagellerService.cs" />
+    <Compile Include="Services\BagelShopService.cs" />
     <Compile Include="Tasks\TaskRegistry.cs" />
     <Compile Include="Tasks\WeekStartReminderTask.cs" />
   </ItemGroup>

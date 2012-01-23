@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BagelClub.Models
 {
@@ -31,5 +32,15 @@ namespace BagelClub.Models
 			else
 				Bagels.Add(firstChoice, 1);
 		}
+	}
+
+	public enum BagelShopType
+	{
+		[Display(Name = "Bruegger's")]
+		Breuggers,
+		[Display(Name = "Einstein")]
+		Einstein,
+		[Display(Name = "Sendik's")]
+		Sendiks
 	}
 }
