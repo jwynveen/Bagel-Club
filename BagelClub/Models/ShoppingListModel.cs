@@ -37,7 +37,7 @@ namespace BagelClub.Models
 	public enum BagelShopType
 	{
 		[Display(Name = "Bruegger's")]
-		Breuggers,
+		Brueggers,
 		[Display(Name = "Einstein")]
 		Einstein,
 		[Display(Name = "Sendik's")]
