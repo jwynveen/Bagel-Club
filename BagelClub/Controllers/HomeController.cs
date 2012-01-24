@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
@@ -36,6 +37,29 @@ namespace BagelClub.Controllers
 		{
 			var bagellers = new BagellerService().FetchAll();
 			new MailController().SendWeekStartReminderEmail(bagellers).DeliverAsync();
+
+			return null;
+		}
+
+		public ActionResult SendDayBeforeReminderEmail()
+		{
+			var bagellerService = new BagellerService();
+			var bagellers = bagellerService.FetchAll();
+			var nextBageller = bagellers.First();
+			//only send the email if the next purchase date is this week
+			if (nextBageller.NextPurchaseDate < DateTime.Today.AddDays(7))
+			{
+				var model = new DayBeforeReminderEmailModel
+				            	{
+				            		Bageller = nextBageller,
+				            		ShoppingList = new ShoppingListModel(BagelShopService.BuildFullShoppingList(bagellers))
+				            	};
+				new MailController().SendDayBeforeReminderEmail(model).DeliverAsync();
+
+				//Email is sent. Now set the user's next purchase date
+				bagellerService.SetNextPurchaseDate(nextBageller);
+				bagellerService.Save(nextBageller);
+			}
 
 			return null;
 		}

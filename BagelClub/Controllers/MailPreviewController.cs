@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
+using BagelClub.Models;
 using BagelClub.Services;
 using Laughlin.Common.Extensions;
 
@@ -13,6 +15,19 @@ namespace BagelClub.Controllers
 			if (id.SafeEquals("text", StringComparison.OrdinalIgnoreCase))
 				return View("~/Views/Mail/SendWeekStartReminderEmail.txt.cshtml", bagellers);
 			return View("~/Views/Mail/SendWeekStartReminderEmail.html.cshtml", bagellers);
+		}
+
+		public ActionResult DayBeforeReminderEmail(string id)
+		{
+			var bagellers = new BagellerService().FetchAll();
+			var model = new DayBeforeReminderEmailModel
+			            	{
+			            		Bageller = bagellers.First(),
+			            		ShoppingList = new ShoppingListModel(BagelShopService.BuildFullShoppingList(bagellers))
+			            	};
+			if (id.SafeEquals("text", StringComparison.OrdinalIgnoreCase))
+				return View("~/Views/Mail/SendDayBeforeReminderEmail.txt.cshtml", model);
+			return View("~/Views/Mail/SendDayBeforeReminderEmail.html.cshtml", model);
 		}
 
 	}

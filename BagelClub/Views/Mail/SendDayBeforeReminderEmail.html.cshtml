@@ -1,0 +1,30 @@
+﻿@model DayBeforeReminderEmailModel
+@{
+    Layout = "~/Views/Shared/_MailLayout.cshtml";
+}
+
+<p>@Model.Bageller.Name,</p>
+
+<p>You're up to bring bagels tomorrow, so don't forget...or else...</p>
+
+<p>Here's your shopping list:</p>
+
+@if (Model.ShoppingList.Locations.Any())
+{
+<fieldset class="super">
+	<ul class="item-list">
+	@foreach (var location in Model.ShoppingList.Locations)
+	{
+		<li>
+			<h3 class="icon-accordion">@location.Name</h3>
+			<ul>
+			@foreach (var bagel in location.Bagels)
+			{ 
+				<li><label><input type="checkbox" /><span class="description">@bagel.Key</span> <span class="quantity">(@bagel.Value)</span></label></li>
+			}
+			</ul>
+		</li>
+	}
+	</ul>
+</fieldset>
+}

@@ -1,0 +1,21 @@
+﻿@model DayBeforeReminderEmailModel
+@{
+    Layout = null;
+}
+@Model.Bageller.Name,
+
+You're up to bring bagels tomorrow, so don't forget...or else...
+
+Here's your shopping list:
+
+@if (Model.ShoppingList.Locations.Any())
+{
+foreach (var location in Model.ShoppingList.Locations)
+{
+<text>@Html.Raw(location.Name)</text>
+foreach (var bagel in location.Bagels)
+{ 
+	<text>@bagel.Key (@bagel.Value)</text>
+}
+}
+}

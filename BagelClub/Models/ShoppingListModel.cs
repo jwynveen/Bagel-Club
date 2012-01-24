@@ -6,6 +6,11 @@ namespace BagelClub.Models
 {
 	public class ShoppingListModel
 	{
+		public ShoppingListModel(){}
+		public ShoppingListModel(IEnumerable<BagelShop> locations)
+		{
+			Locations = locations;
+		}
 		public IEnumerable<BagelShop> Locations { get; set; }
 	}
 

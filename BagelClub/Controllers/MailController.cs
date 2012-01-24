@@ -9,9 +9,11 @@ namespace BagelClub.Controllers
 {
 	public class MailController : MailerBase
 	{
+		private const string BagelClubFromEmail = "Bagel Club <bagelclub@laughlin.com>";
+
 		public EmailResult SendWeekStartReminderEmail(IEnumerable<Bageller> model)
 		{
-			From = "Bagel Club <bagelclub@laughlin.com>";
+			From = BagelClubFromEmail;
 			var emailList = string.Join(",", model.Select(x => x.Email));
 			if (HttpContext.Current.Request.IsLocal)
 				emailList = "jwynveen@laughlin.com";
@@ -24,6 +26,15 @@ namespace BagelClub.Controllers
 			Subject = "This Week's Bageller is: " + nextBageller.Name;
 
 			return Email("SendWeekStartReminderEmail", model);
+		}
+
+		public EmailResult SendDayBeforeReminderEmail(DayBeforeReminderEmailModel model)
+		{
+			From = BagelClubFromEmail;
+			To.Add(HttpContext.Current.Request.IsLocal ? "jwynveen@laughlin.com" : model.Bageller.Email);
+			Subject = "Don't forget the bagels!";
+
+			return Email("SendDayBeforeReminderEmail", model);
 		}
 
 	}

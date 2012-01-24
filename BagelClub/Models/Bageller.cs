@@ -12,5 +12,10 @@ namespace BagelClub.Models
 		public string Sendiks { get; set; }
 		public Byte PurchaseLocation { get; set; }
 		public DateTime NextPurchaseDate { get; set; }
+
+		public override string ToString()
+		{
+			return Name;
+		}
 	}
 }
