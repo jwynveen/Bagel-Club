@@ -1,8 +1,11 @@
 ﻿@model IEnumerable<BagelClub.Models.Bageller>
-<div class="widget-upcoming widget">
+<div class="widget-upcoming widget group">
 	<h2>Upcoming Bagellers</h2>
 	@if (Model.Any())
 	{
+	<div class="utility no-print">
+		<button class="btn btn-edit">Edit</button>
+	</div>
 	<ul id="upcoming" class="item-list">
 		@foreach (var bageller in Model)
 		{
@@ -12,6 +15,6 @@
 	}
 	else
 	{
-		<p>Sorry.</p>
+		<p class="error">No bagellers.</p>
 	}
 </div>

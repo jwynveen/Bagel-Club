@@ -70,11 +70,14 @@ color:#12eb87;
 
 /* ================================================== base:layout ===== */
 
+body {}
+
 #container {
 	position:relative;
 	width:720px;
 	margin:0 auto;
 	text-align:left;
+	padding-bottom:1em; 
 }
 .group{
 	width:100%;
@@ -87,21 +90,19 @@ color:#12eb87;
 }
 /* ================================================== base:typography ===== */
 
-html,
-body {
-	text-align:center;
-}
-
 html {
 	font-family:"Courier New", Courier, Monospace;
 	font-size:10px;
+	text-align:left;
 	color:#111;
 }
+
 body{
 	font-family:Tahoma, Verdana, Sans-serif;
 	font-size:18px;
 	font-smooth:10px;
 	color:#666;
+	text-align:center;
 }
 
 h1,
@@ -127,43 +128,6 @@ p, ul {
 	margin-bottom:20px;
 	line-height:1.6em;
 }
-
-/* ================================================== base:btns + icons ===== */
-
-.btn {
-	display:inline-block;
-	font-family:Chunk, Arial, Helvetica, Sans-Serif;
-	font-size:14px;
-	border:.5em solid #666;
-	-moz-border-radius:1.5em;
-	-webkit-border-radius:1.5em;
-	border-radius:1.5em;
-	background-color:#fff;
-	padding:.25em .5em;
-	color:#666;
-}
-.btn-here {
-	margin-left:auto;
-	margin-right:auto;
-	font-size:24px;
-}
-.btn-submit { }
-
-.utility,
-.super .utility {
-	position:absolute;
-	top:-2em;
-	right:0;
-	margin:0;
-	padding-right:1em;
-}
-
-.utility .btn {
-	float:right;
-	margin-left:.5em;
-}
-
-.icon { }
 
 /* ================================================== base:tables ===== */
 
@@ -251,6 +215,43 @@ input[type="password"] {
 .validation-summary-valid {
 	display:none;
 }
+
+/* ================================================== base:btns + icons ===== */
+
+.btn {
+	display:inline-block;
+	font-family:Chunk, Arial, Helvetica, Sans-Serif;
+	font-size:14px;
+	border:.5em solid #666;
+	-moz-border-radius:1.5em;
+	-webkit-border-radius:1.5em;
+	border-radius:1.5em;
+	background-color:#fff;
+	padding:.25em .5em;
+	color:#666;
+}
+.btn-here {
+	margin-left:auto;
+	margin-right:auto;
+	font-size:24px;
+}
+.btn-submit { }
+
+.utility,
+.super .utility {
+	position:absolute;
+	top:0;
+	right:0;
+	margin:0;
+	padding-right:1em;
+}
+
+.utility .btn {
+	float:right;
+	margin-left:.5em;
+}
+
+.icon { }
 
 /* ================================================== base:item-list ===== */
 
@@ -375,6 +376,8 @@ input[type="password"] {
 .widget-area { }
 
 .widget-container { }
+
+.widget { position:relative; }
 
 .widget-title { }
 
