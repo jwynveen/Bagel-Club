@@ -22,6 +22,7 @@
 
 /* TODO:determine color story for site */
 /* http://www.webdesignerdepot.com/2009/03/50-monochromatic-website-designs/ */
+
 #colorblocks {
 	position:fixed;
 	top:0;
@@ -30,6 +31,7 @@
 	padding-top:.5em;
 	opacity:.5;
 }
+
 #colorblocks li{
 	font-size:24px;
 	text-transform:uppercase;
@@ -41,11 +43,26 @@
 	font-weight:bold;
 	color:#fff;
 }
+
 #colorblocks .block1 { background-color:#FFE2B2; }
 #colorblocks .block2 { background-color:#997C4C; }
 #colorblocks .block3 { background-color:#E5C38A; }
 #colorblocks .block4 { background-color:#3D6C99; }
 #colorblocks .block5 { background-color:#8AB8E5; }
+
+/* regal bakery
+FFE2B2,997C4C,E5C38A,3D6C99,8AB8E5
+*/
+
+/* fresh pot
+E5E0B7,BFAF7F,913C11,2B1B0D,57432A
+*/
+
+/* french
+76A19A,272123,A68D60,B0C5BB,D9593D
+*/
+
+#colorblocks{ display:none; }
 
 em,
 strong { }
@@ -70,7 +87,7 @@ color:#12eb87;
 
 /* ================================================== base:layout ===== */
 
-body {}
+body { padding: .5em 0; }
 
 #container {
 	position:relative;
@@ -168,18 +185,15 @@ fieldset.super{
 fieldset.super legend {
 	font-size:1.2em;
 	font-weight:bold;
-	color:#000;
 }
 
 fieldset.super label {
 	display:block;
-	color:#000;
 }
 
 fieldset.super fieldset label {
 	display:inline;
 	width:auto;
-	color:#444;
 }
 
 fieldset.super textarea {
@@ -251,8 +265,26 @@ input[type="password"] {
 	margin-left:.5em;
 }
 
-.icon { }
+.icon {
+	display:inline;
+	float:left;
+	vertical-align:middle;
+	width:16px;
+	height:16px;
+	margin-left:-16px;
+	margin-right:4px;
+	overflow:hidden;
+	text-indent:-999em;
+	background:transparent url("../Images/ui/ui-icons_888888_256x240.png") no-repeat 0 0;
+}
 
+.icon-accordion .icon {
+	background-position:-32px -16px;
+}
+
+.open .icon-accordion .icon{
+	background-position:-64px -16px;
+}
 /* ================================================== base:item-list ===== */
 
 .item-list,
