@@ -1,0 +1,32 @@
+/* TEAM */
+	<your role>:<your name>
+	Contact: user [at] domain.com
+	Twitter: @
+	From: <your general location> 
+
+	UI Developer: 
+	Twitter: @
+	From:
+
+	Designer: 
+	Twitter: @
+	From:
+
+	Front-end: Paul Gueller
+	Contact: pgueller@laughlin.com
+	Twitter: @oomlaut
+	From: West Allis, WI
+
+	Back-end: 
+	Twitter: @
+	From:
+
+/* THANKS */
+
+		
+
+/* SITE */
+	Last update: 2012/01/23
+	Language: English
+	Doctype: HTML5
+	IDE: Visual Studio

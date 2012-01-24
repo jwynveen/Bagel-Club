@@ -1,0 +1,230 @@
+/* ================================================== RESET (eric meyer v2.0 | 20110126) ===== */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin:0;
+	padding:0;
+	border:0;
+	font-size:100%;
+	font:inherit;
+	vertical-align:baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display:block;
+}
+
+body {
+	line-height:1;
+}
+
+ol, ul {
+	list-style:none;
+}
+
+blockquote, q {
+	quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content:'';
+	content:none;
+}
+
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+
+/* ================================================== NORMALIZE (custom) ===== */
+
+audio[controls], canvas, video { display:inline-block; *display:inline-block; *display:inline; zoom:1; }
+
+command, datalist, keygen, mark, meter, progress, rp, rt, ruby, time, wbr { display:inline; }
+
+a:focus { outline:none; }
+
+a img { border:0; }
+
+abbr[title], dfn[title] { border-bottom:1px dotted; cursor:help; }
+
+b, strong, dt, th { font-weight:bold; }
+
+blockquote { margin:1em 40px; }
+
+body { font:normal 12px Arial, Helvetica, sans-serif; }
+
+cite, dfn, em, i { font-style:italic; }
+
+del { text-decoration:line-through; }
+
+h1, .h1 { font-size:2.33333em; }
+
+h2, .h2 { font-size:2em; }
+
+h3, .h3 { font-size:1.75em; }
+
+h4, .h4 { font-size:1.5em; }
+
+h5, .h5 { font-size:1.33333em; }
+
+h6, .h6 { font-size:1.16667em; }
+
+h1, h2, h3, h4, h5, h6 { font-weight:bold; line-height:1.2; }
+
+html { cursor:default; overflow-y:scroll; -webkit-tap-highlight-color:transparent; -ms-text-size-adjust:100%; -webkit-text-size-adjust:100%; }
+
+img { -ms-interpolation-mode:bicubic; }
+
+ins { background-color:#ff9; color:#000; text-decoration:none; }
+
+mark { background:#ff0; color:#000; font-style:italic; font-weight:bold; }
+
+pre, code, kbd, samp { font-family:monospace, sans-serif; _font-family:'Courier New', monospace, sans-serif; font-size:1em; }
+
+pre { white-space:pre; white-space:pre-wrap; word-wrap:break-word; }
+
+small { font-size:1em; }
+
+sub, sup { font-size:75%; line-height:0; position:relative; vertical-align:baseline; }
+
+sub { bottom:-0.25em; }
+
+sup { top:-0.5em; }
+
+th, td { padding:0; text-align:left; vertical-align:middle; }
+
+/* ===== paragraphs and lists ===== */
+
+p, dl, ol, ul { margin:0 0 1em; }
+
+ol, ul { padding:0 0 0 40px; }
+
+ol { list-style-type:decimal; }
+
+ul { list-style-type:disc; }
+
+nav ol, nav ul, nav li { padding:0; margin:0; list-style:none; }
+
+dd, dt, li { margin:0 0 .5em; }
+
+dd { margin:0 0 .5em 40px; }
+
+/* ===== seperators ===== */
+
+hr { display:block; padding:0; height:1px; border:0; border-top:1px solid #ddd; margin:1em 0; }
+
+.hr { border-top:1px solid #ddd; overflow:hidden; }
+
+div.hr { margin:1em 0; }
+
+p.hr { padding-top:1em; }
+
+p.hr-bottom { border-top:none; border-bottom:1px solid #ddd; padding-bottom:1em; }
+
+.sep { font-weight:normal; margin:0 .25em; }
+
+/* ===== forms ===== */
+
+div.success, p.success, span.success { font-weight:bold; color:#090; }
+
+div.error, div.required, p.error, p.required, span.error, span.required { font-weight:bold; color:#c00; }
+
+label { cursor:pointer; }
+
+legend { *margin-left:-7px; }
+
+button, input, select, textarea { vertical-align:baseline; *vertical-align:middle; }
+
+button, input { line-height:normal; *overflow:visible; }
+
+button, input[type="button"], input[type="reset"], input[type="submit"] { cursor:pointer; -webkit-appearance:button; }
+
+input[type="checkbox"], input[type="radio"] { box-sizing:border-box; }
+
+input[type="search"] { -webkit-appearance:textfield; -moz-box-sizing:content-box; -webkit-box-sizing:content-box; box-sizing:content-box; }
+
+input[type="search"]::-webkit-search-decoration { -webkit-appearance:none; }
+
+button::-moz-focus-inner, input::-moz-focus-inner { border:0; padding:0; }
+
+select[multiple], textarea { overflow:auto; vertical-align:top; }
+
+fieldset.super > div, fieldset.super > fieldset > div { margin:1em 0; }
+
+/* ===== defaults ===== */
+
+.large { font-size:1.5em; }
+
+.small { font-size:10px; }
+
+.nowrap { white-space:nowrap; }
+
+.block { display:block; }
+
+.textcenter { text-align:center; }
+
+.textright { text-align:right; }
+
+.textleft { text-align:left; }
+
+.right, .alignright { _display:inline; margin:0 0 1em 1em; float:right; }
+
+.left, .alignleft { _display:inline; margin:0 1em 1em 0; float:left; }
+
+.center, .aligncenter { display:block; margin:0 auto; clear:both; }
+
+.col { float:left; }
+
+.clear-right { clear:right; }
+
+.clear-left { clear:left; }
+
+.clearfix:before, .clearfix:after, .group:before, .group:after, .row:before, .row:after { content:""; display:table; }
+
+.clear, .clearfix:after, .group:after, .row:after { clear:both; }
+
+.clearfix, .group, .row { *zoom:1; }
+
+.reduced-top { margin-top:0; }
+
+.reduced { padding:0; border:none; margin:0; list-style:none; }
+
+.ir, .hid { display:block; background-repeat:no-repeat; direction:ltr; text-align:left; text-indent:-999em; overflow:hidden; }
+
+.hidden, .hide, .print, .hr hr { display:none; visibility:hidden; }
+
+.visuallyhidden { position:absolute; padding:0; width:1px; height:1px; border:0; margin:-1px; clip:rect(0 0 0 0); overflow:hidden; }
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus { position:static; width:auto; height:auto; margin:0; clip:auto; overflow:visible; }
+
+.invisible { visibility:hidden; }
+
+.assistive-text { position:absolute !important; clip:rect(1px 1px 1px 1px); clip:rect(1px, 1px, 1px, 1px); }
+
+a.assistive-text:active, a.assistive-text:focus { position:absolute; top:0; left:7.6%; background:#eee; border-bottom:1px solid #ddd; color:#1982d1; font-size:12px; text-decoration:underline; clip:auto !important; }
+
+/* ===== ie ===== */
+
+.lte8 .relative { position:relative; }
+
+.lte8 .static { position:static; }
+
+.lte7 .inline { display:inline-block; *display:inline-block; *display:inline; zoom:1; }
+
+.ie6 .height { height:1%; }
