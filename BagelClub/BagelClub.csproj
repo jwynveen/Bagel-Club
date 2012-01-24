@@ -116,7 +116,6 @@
     <Content Include="Content\Styles\print.css" />
     <Content Include="Content\Styles\reset.css" />
     <Content Include="Content\Styles\page.css" />
-    <Content Include="emails\template.html" />
     <Content Include="Global.asax" />
     <Content Include="humans.txt" />
     <Content Include="robots.txt" />
@@ -130,7 +129,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Content\Styles\jquery-ui.css" />
-    <Content Include="Content\themes\base\jquery-ui.css" />
     <Content Include="Content\Images\ui\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\Images\ui\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\Images\ui\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -144,24 +142,6 @@
     <Content Include="Content\Images\ui\ui-icons_454545_256x240.png" />
     <Content Include="Content\Images\ui\ui-icons_888888_256x240.png" />
     <Content Include="Content\Images\ui\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Scripts\jquery-1.4.4.js" />
-    <Content Include="Scripts\jquery-1.4.4.min.js" />
-    <Content Include="Scripts\jquery-1.4.4-vsdoc.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery-ui.js" />
-    <Content Include="Scripts\jquery-ui.min.js" />
-    <Content Include="Scripts\MicrosoftAjax.js" />
-    <Content Include="Scripts\MicrosoftAjax.debug.js" />
-    <Content Include="Scripts\MicrosoftMvcAjax.js" />
-    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
-    <Content Include="Scripts\MicrosoftMvcValidation.js" />
-    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -180,7 +160,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_ShoppingList.cshtml" />
-  
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\Fonts\chunk.eot" />
@@ -190,6 +169,9 @@
     <None Include="Content\Fonts\mtf_chubb.ttf" />
     <None Include="Content\Fonts\mtf_chubb.woff" />
     <Content Include="Views\Shared\_Lorem.cshtml" />
+    <Content Include="Views\Mail\SendWeekStartReminderEmail.html.cshtml" />
+    <Content Include="Views\Mail\SendWeekStartReminderEmail.txt.cshtml" />
+    <Content Include="Views\Shared\_MailLayout.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
