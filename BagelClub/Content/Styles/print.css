@@ -2,10 +2,12 @@
 @media print {
 	@page {
 		size:8.5in 11in landscape;
-		margin:.75cm .5cm 1.25cm;
+		margin:2cm 1.5cm 2.5cm;
 	}
 	
 	* { background:transparent !important; color:black !important; text-shadow:none !important; filter:none !important; -ms-filter:none !important; }
+	
+	body { font-size:12px; }
 	
 	a, a:visited { color:#444 !important; text-decoration:underline; }
 	
@@ -61,7 +63,8 @@
 	
 	/* widgets */
 	
-	#shopping-list ul {
+	#shopping-list h3 { padding-bottom: .5em; }
+	#shopping-list .item-list ul {
 		display:block !important;
 	}
 	
@@ -81,12 +84,27 @@
 		display:inline-block !important;
 	}
 	
+	.widget-upcoming ul {
+		padding-left:0;
+	}
+	
 	.widget-upcoming h2,
-	.widget-upcoming #upcoming li {
+	.widget-upcoming li {
 		display:none;
 	}
 	
-	.widget-upcoming #upcoming li:first-child {
+	.widget-upcoming li:first-child {
 		display:block;
+		padding-top:.25em;
+		font-family:Chunk, Arial, Helvetica, Sans-serif;
+		font-size:18px;
+		text-align:center;
+	}
+	
+	.widget-upcoming strong{
+		display:block;
+		float:none;
+		width:auto;
+		margin-bottom:.5em;
 	}
 }

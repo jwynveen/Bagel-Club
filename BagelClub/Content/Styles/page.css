@@ -6,39 +6,57 @@ body.home { }
 
 /* ================================================== shopping list ===== */
 
-#shopping-list {
-	color:#999;
-}
 
 #shopping-list h3{
 	color:#999;
 }
+#shopping-list .utility{
+	top:-2em;
+}
+#shopping-list ul{
+	color:#999;
+}
 
-#shopping-list ul {
+#shopping-list ul ul {
 	display:none;
 }
+
 #shopping-list .open ul {
 	display:block;
 }
+
 #shopping-list input[type="checkbox"] {
 	display:none;
 	margin-right:.5em;
 }
+
+/* ================================================== shopping list ===== */
+#bagel-here-form fieldset{
+	display:none;
+}
+
+
 /* ================================================== widget:upcoming ===== */
 
-.widget #upcoming {
+.widget-upcoming .utility{
+}
+
+.widget-upcoming ul {
 	padding-left:1em;
 }
-.widget #upcoming li{
+
+.widget-upcoming li{
 	color:#ccc;
 	font-size:14px;
 	clear:both;
 }
-.widget #upcoming li:first-child{
+
+.widget-upcoming li:first-child{
 	color:#999;
 	font-size:18px;
 }
-.widget #upcoming strong{
+
+.widget-upcoming strong{
 	float:left;
 	display:inline;
 	width:35%;

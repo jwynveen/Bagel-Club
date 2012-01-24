@@ -172,6 +172,7 @@
     <Content Include="Views\Mail\SendWeekStartReminderEmail.html.cshtml" />
     <Content Include="Views\Mail\SendWeekStartReminderEmail.txt.cshtml" />
     <Content Include="Views\Shared\_MailLayout.cshtml" />
+    <Content Include="Views\Shared\_BagelsHere.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
