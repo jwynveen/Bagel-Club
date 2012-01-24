@@ -5,17 +5,30 @@
 body.home { }
 
 /* ================================================== shopping list ===== */
-#shopping-list input[type="checkbox"]{
+
+#shopping-list {
+	color:#999;
+}
+
+#shopping-list h3{
+	color:#999;
+}
+
+#shopping-list ul {
 	display:none;
 }
-#shopping-list ul{
-	display:none;
-}
-#shopping-list .open ul{
+#shopping-list .open ul {
 	display:block;
+}
+#shopping-list input[type="checkbox"] {
+	display:none;
+	margin-right:.5em;
 }
 /* ================================================== widget:upcoming ===== */
 
+.widget #upcoming {
+	padding-left:1em;
+}
 .widget #upcoming li{
 	color:#ccc;
 	font-size:14px;

@@ -8,14 +8,14 @@
 {
 	<h2>@ViewBag.Message</h2>
 }
-<div id="primary">
-	@Html.Partial("_ShoppingList", Model.ShoppingList)
-	<!-- TODO: "Bagels are here" form -->
-</div>
-<!-- #primary -->
 <div id="secondary">
 	<aside class="widget-area" role="complementary">
 		@Html.Partial("_UpcomingBagellers", Model.Bagellers)
 	</aside>
 </div>
 <!-- #secondary -->
+<div id="primary">
+	@Html.Partial("_ShoppingList", Model.ShoppingList)
+	<!-- TODO: "Bagels are here" form -->
+</div>
+<!-- #primary -->

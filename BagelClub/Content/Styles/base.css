@@ -81,7 +81,7 @@ color:#12eb87;
 	overflow:hidden;
 }
 #primary, #secondary{
-	float:left;
+	float:right;
 	display:inline;
 	width:50%;
 }
@@ -142,16 +142,26 @@ p, ul {
 	padding:.25em .5em;
 	color:#666;
 }
-.btn-print {
-	float:right;
-	margin-top:-2.5em;
-	margin-right:.5em;
-}
 .btn-here {
-	margin-left:1em;
+	margin-left:auto;
+	margin-right:auto;
 	font-size:24px;
 }
 .btn-submit { }
+
+.utility,
+.super .utility {
+	position:absolute;
+	top:-2em;
+	right:0;
+	margin:0;
+	padding-right:1em;
+}
+
+.utility .btn {
+	float:right;
+	margin-left:.5em;
+}
 
 .icon { }
 
@@ -186,6 +196,7 @@ table.super tr.odd th { background-color:#ddd; }
 /* ================================================== base:forms ===== */
 
 fieldset.super{
+	position:relative;
 	padding:0 .75em .5em .75em;
 	margin:0 0 1.5em 0;
 }
@@ -243,7 +254,8 @@ input[type="password"] {
 
 /* ================================================== base:item-list ===== */
 
-.item-list {
+.item-list,
+.item-list ul {
 	list-style-type:none;
 	padding-left:0;
 }

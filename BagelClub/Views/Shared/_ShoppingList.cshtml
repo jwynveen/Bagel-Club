@@ -1,20 +1,12 @@
 ﻿@model ShoppingListModel
 
 <h2>shopping list</h2>
-<fieldset class="super">
-	<button class="btn btn-print no-print">Print All</button>
-	<ul id="shopping-list" class="item-list">
-		<li class="sample">
-			<h3>Bagel Paradise</h3>
-			<ul class="">
-				<li><input type="checkbox" />Organic Wheatgrass</li>
-			</ul>
-		</li>
-	</ul>
-</fieldset>
-
 @if (Model.Locations.Any()){
 <fieldset class="super">
+	<div class="utility no-print">
+		<button class="btn btn-print">Print All</button>
+		<button class="btn btn-edit">Edit</button>
+	</div>
 	<ul id="shopping-list" class="item-list">
 	@foreach(var location in Model.Locations){
 		<li>
@@ -29,4 +21,4 @@
 	</ul>
 </fieldset>
 }
-<button class="btn btn-here">Bagels are here!</button>
+<button class="btn btn-here no-print">Bagels are here!</button>

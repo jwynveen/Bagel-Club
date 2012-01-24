@@ -2,7 +2,7 @@
 @media print {
 	@page {
 		size:8.5in 11in landscape;
-		margin:1in 1.5in;
+		margin:.75cm .5cm 1.25cm;
 	}
 	
 	* { background:transparent !important; color:black !important; text-shadow:none !important; filter:none !important; -ms-filter:none !important; }
@@ -13,12 +13,10 @@
 	
 	abbr[title]:after { content:" (" attr(title) ")"; }
 	
-	#site-title a:after,
 	a[href*="images/"]:after,
 	a[href^="javascript:"]:after,
-	a[href^="#"]:after { content:""; }
-	
-	#site-title a { text-decoration:none; }
+	a[href^="#"]:after,
+	#site-title a:after { content:""; }
 	
 	pre, blockquote { border:1px solid #999; page-break-inside:avoid; }
 	
@@ -37,15 +35,58 @@
 	.print { display:block !important; }
 
 	/* layout reset */
+	
+	#container,
+	#primary,
+	#secondary {
+		width:100%;
+	}
+	
 	#header {
-		padding-top:10px;
+		margin-top:0;
+		padding-top:0;
 		padding-bottom:10px;
 	}
-	#shopping-list ul {
-		display:block;
+	
+	#site-title {
+		font-size:42px;
 	}
+	
+	#site-title a { text-decoration:none; }
+	
+	#primary,
+	#secondary{
+		clear:both;
+	}
+	
+	/* widgets */
+	
+	#shopping-list ul {
+		display:block !important;
+	}
+	
+	#shopping-list li {
+		float:left;
+		display:inline;
+		width:33%;
+	}
+	
+	#shopping-list li li {
+		float:none;
+		display:block;
+		width:100%;
+	}
+	
 	#shopping-list ul input[type="checkbox"]{
-		display:inline-block;
-		margin-right:.5em;
+		display:inline-block !important;
+	}
+	
+	.widget-upcoming h2,
+	.widget-upcoming #upcoming li {
+		display:none;
+	}
+	
+	.widget-upcoming #upcoming li:first-child {
+		display:block;
 	}
 }
