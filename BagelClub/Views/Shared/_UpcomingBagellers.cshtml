@@ -1,9 +1,17 @@
 ﻿@model IEnumerable<BagelClub.Models.Bageller>
-<h2>Upcoming Bagellers</h2>
-@if (Model.Any()){
-<ul>
-@foreach(var bageller in Model){
-	<li>@bageller.Name - @bageller.NextPurchaseDate.ToShortDateString()</li>
-}
-</ul>
-}
+<div class="widget">
+	<h2>Upcoming Bagellers</h2>
+	@if (Model.Any())
+	{
+	<ul id="upcoming" class="item-list">
+		@foreach (var bageller in Model)
+		{
+		<li><strong>@bageller.NextPurchaseDate.ToShortDateString()</strong> @bageller.Name </li>
+		}
+	</ul>
+	}
+	else
+	{
+		<p>Sorry.</p>
+	}
+</div>

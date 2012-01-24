@@ -1,8 +1,19 @@
 ﻿@{
-    ViewBag.Title = "About Us";
+    ViewBag.Title = "about us";
+	ViewBag.BodyClass = "about";
+	ViewBag.Message = "about";
 }
 
-<h2>About</h2>
-<p>
-     Put content here.
-</p>
+@if (!String.IsNullOrEmpty(ViewBag.Message))
+{
+	<h2>@ViewBag.Message</h2>
+}
+<div id="primary">
+	@Html.Partial("_Lorem")
+</div>
+<!-- #primary -->
+<div id="secondary">
+	<aside class="widget-area" role="complementary">
+		widgets
+	</aside>
+</div>

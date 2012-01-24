@@ -1,16 +1,32 @@
 ﻿@model ShoppingListModel
-<h2>Shopping List</h2>
+
+<h2>shopping list</h2>
+<fieldset class="super">
+	<button class="btn btn-print no-print">Print All</button>
+	<ul id="shopping-list" class="item-list">
+		<li class="sample">
+			<h3>Bagel Paradise</h3>
+			<ul class="">
+				<li><input type="checkbox" />Organic Wheatgrass</li>
+			</ul>
+		</li>
+	</ul>
+</fieldset>
+
 @if (Model.Locations.Any()){
-<ul>
-@foreach(var location in Model.Locations){
-	<li>
-		<h3>@location.Name</h3>
-		<ul>
-		@foreach (var bagel in location.Bagels) { 
-			<li>@bagel.Key - @bagel.Value</li>
-		}
-		</ul>
-	</li>
+<fieldset class="super">
+	<ul id="shopping-list" class="item-list">
+	@foreach(var location in Model.Locations){
+		<li>
+			<h3>@location.Name</h3>
+			<ul>
+			@foreach (var bagel in location.Bagels) { 
+				<li><input type="checkbox" />@bagel.Key - @bagel.Value</li>
+			}
+			</ul>
+		</li>
+	}
+	</ul>
+</fieldset>
 }
-</ul>
-}
+<button class="btn btn-here">Bagels are here!</button>
