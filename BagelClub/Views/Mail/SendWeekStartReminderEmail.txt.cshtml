@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Bageller>
+@{
+    Layout = null;
+}
+
+Upcoming Bagellers:
+
+@foreach (var bageller in Model) { 
+	<text>@bageller.NextPurchaseDate.ToShortDateString() - @bageller.Name</text>
+}

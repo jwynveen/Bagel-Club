@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Bageller>
+@{
+    Layout = "~/Views/Shared/_MailLayout.cshtml";
+}
+
+<h1>Upcoming Bagellers:</h1>
+<table border="0">
+@foreach (var bageller in Model) { 
+	<tr>
+		<th style="text-align:left;">@bageller.NextPurchaseDate.ToShortDateString()</th>
+		<td>@bageller.Name</td>
+	</tr>
+}
+</table>

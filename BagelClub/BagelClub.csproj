@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ActionMailer.Net">
+      <HintPath>..\packages\ActionMailer.0.6.2\lib\Net40\ActionMailer.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="ActionMailer.Net.Mvc">
+      <HintPath>..\packages\ActionMailer.0.6.2\lib\Net40\ActionMailer.Net.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Dapper">
       <HintPath>..\packages\Dapper.1.8\lib\net40\Dapper.dll</HintPath>
     </Reference>
@@ -80,6 +86,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MailController.cs" />
+    <Compile Include="Controllers\MailPreviewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -89,6 +97,7 @@
     <Compile Include="Models\ShoppingListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BagellerService.cs" />
+    <Compile Include="Services\BagelShopService.cs" />
     <Compile Include="Tasks\TaskRegistry.cs" />
     <Compile Include="Tasks\WeekStartReminderTask.cs" />
   </ItemGroup>
@@ -121,6 +130,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Content\Styles\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
     <Content Include="Content\Images\ui\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\Images\ui\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\Images\ui\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -134,6 +144,18 @@
     <Content Include="Content\Images\ui\ui-icons_454545_256x240.png" />
     <Content Include="Content\Images\ui\ui-icons_888888_256x240.png" />
     <Content Include="Content\Images\ui\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\jquery-1.4.4.js" />
+    <Content Include="Scripts\jquery-1.4.4.min.js" />
+    <Content Include="Scripts\jquery-1.4.4-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
@@ -158,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_ShoppingList.cshtml" />
+  
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\Fonts\chunk.eot" />
