@@ -62,8 +62,9 @@
 	#secondary{
 		clear:both;
 	}
-	
-	/* widgets */
+/* sections */
+
+	/* shopping-list */
 	
 	#shopping-list h3 { padding-bottom: .5em; }
 	
@@ -94,7 +95,11 @@
 		float:none;
 		margin-top:0;
 	}
+
+/* widgets */
 	
+	/* widget-upcoming */
+
 	.widget-upcoming ul {
 		padding-left:0;
 	}
