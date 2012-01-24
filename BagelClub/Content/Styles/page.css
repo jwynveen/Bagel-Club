@@ -7,27 +7,60 @@ body.home { }
 /* ================================================== shopping list ===== */
 
 
-#shopping-list h3{
+#shopping-list h3 {
 	color:#999;
+	cursor:pointer;
+	text-transform:none;
 }
+
+#shopping-list .open h3,
+#shopping-list .open h3:hover {
+	color:#888;
+}
+
+#shopping-list h3:hover {
+	color:#aaa;
+}
+
+#shopping-list h3 .icon {
+	margin-top: .125em;
+}
+
 #shopping-list .utility{
 	top:-2em;
 }
-#shopping-list ul{
-	color:#999;
-}
 
-#shopping-list ul ul {
-	display:none;
+#shopping-list ul {
+	color:#999;
 }
 
 #shopping-list .open ul {
 	display:block;
 }
 
+#shopping-list ul ul {
+	display:none;
+}
+
+#shopping-list .open li {
+	padding-left:1em;
+}
+
+#shopping-list .quantity {
+	font-size:.75em;
+}
+
 #shopping-list input[type="checkbox"] {
 	display:none;
-	margin-right:.5em;
+	float:left;
+	margin-right:1em;
+	margin-top:.55em;
+}
+
+input[type="checkbox"]:checked + .description,
+input[type="checkbox"][checked] + .description {
+	font-style:oblique;
+	text-decoration:line-through;
 }
 
 /* ================================================== shopping list ===== */

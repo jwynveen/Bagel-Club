@@ -12,12 +12,12 @@
 		@foreach (var location in Model.Locations)
 		{
 			<li>
-				<h3>@location.Name</h3>
+				<h3 class="icon-accordion">@location.Name</h3>
 				<ul>
 				@foreach (var bagel in location.Bagels)
-		{ 
-					<li><input type="checkbox" />@bagel.Key - @bagel.Value</li>
-		}
+				{ 
+					<li><label><input type="checkbox" /><span class="description">@bagel.Key</span> <span class="quantity">(@bagel.Value)</span></label></li>
+				}
 				</ul>
 			</li>
 		}

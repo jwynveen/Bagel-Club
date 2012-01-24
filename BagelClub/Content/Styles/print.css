@@ -5,6 +5,8 @@
 		margin:2cm 1.5cm 2.5cm;
 	}
 	
+	.icon { display:none; }
+	
 	* { background:transparent !important; color:black !important; text-shadow:none !important; filter:none !important; -ms-filter:none !important; }
 	
 	body { font-size:12px; }
@@ -64,6 +66,13 @@
 	/* widgets */
 	
 	#shopping-list h3 { padding-bottom: .5em; }
+	
+	#shopping-list .super,
+	#shopping-list .open li {
+		padding-left:0;
+		padding-right:0;
+	}
+	
 	#shopping-list .item-list ul {
 		display:block !important;
 	}
@@ -82,6 +91,8 @@
 	
 	#shopping-list ul input[type="checkbox"]{
 		display:inline-block !important;
+		float:none;
+		margin-top:0;
 	}
 	
 	.widget-upcoming ul {
