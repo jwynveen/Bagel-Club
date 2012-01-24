@@ -17,9 +17,9 @@
 	Twitter: @oomlaut
 	From: West Allis, WI
 
-	Back-end: 
-	Twitter: @
-	From:
+	Back-end: Jon Wynveen
+	Contact: jwynveen@laughlin.com
+	From: Oostburg, WI
 
 /* THANKS */
 
