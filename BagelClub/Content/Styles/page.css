@@ -63,10 +63,22 @@ input[type="checkbox"][checked] + .description {
 	text-decoration:line-through;
 }
 
-/* ================================================== shopping list ===== */
-#bagel-here-form fieldset{
+/* ================================================== bagels are here form ===== */
+
+#bagel-here-form fieldset {
 	display:none;
 }
+
+#bagel-here-form label {
+	font-weight:bold;
+}
+
+#bagel-here-form label,
+#bagel-here-form .txt {
+	display:inline-block;
+	margin-right:.5em;
+}
+
 
 
 /* ================================================== widget:upcoming ===== */

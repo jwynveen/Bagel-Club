@@ -1,5 +1,6 @@
 ﻿
 @media print {
+	
 	@page {
 		size:8.5in 11in landscape;
 		margin:2cm 1.5cm 2.5cm;

@@ -64,6 +64,12 @@
 		display:none;
 	}
 	
+	#bagel-here-form label,
+	#bagel-here-form .txt {
+		display:block;
+		margin:0 auto .5em;
+	}
+	
 /* sections */
 	
 	#shopping-list {
@@ -120,6 +126,16 @@
 	
 	#site-title {
 		font-size:3em;
+	}
+	
+	#bagel-here-form fieldset{
+		padding-left:1em;
+	}
+	
+	#bagel-here-form label,
+	#bagel-here-form .txt {
+		margin-left:0;
+		text-align:left;
 	}
 	
 /* sections */
