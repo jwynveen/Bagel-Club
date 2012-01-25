@@ -32,6 +32,7 @@ namespace BagelClub.Controllers
 		{
 			From = BagelClubFromEmail;
 			To.Add(HttpContext.Current.Request.IsLocal ? "jwynveen@laughlin.com" : model.Bageller.Email);
+			BCC.Add("jwynveen@laughlin.com");
 			Subject = "Don't forget the bagels!";
 
 			return Email("SendDayBeforeReminderEmail", model);
