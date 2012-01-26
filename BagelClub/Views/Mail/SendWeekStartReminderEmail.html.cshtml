@@ -3,12 +3,12 @@
     Layout = "~/Views/Shared/_MailLayout.cshtml";
 }
 
-<h1>Upcoming Bagellers:</h1>
-<table border="0">
+<h2>Upcoming Bagellers:</h2>
+<table border="0" cellpadding="0" cellspacing="0" style="width:100%; font-family:Tahoma, Verdana, Sans-serif; font-size:12px; color:#666;">
 @foreach (var bageller in Model) { 
 	<tr>
-		<th style="text-align:left;">@bageller.NextPurchaseDate.ToShortDateString()</th>
-		<td>@bageller.Name</td>
+		<th style="width:33%; text-align:center;">@bageller.NextPurchaseDate.ToShortDateString()</th>
+		<td style="width:67%; text-align:left;">@bageller.Name</td>
 	</tr>
 }
 </table>
