@@ -63,5 +63,20 @@ namespace BagelClub.Controllers
 
 			return null;
 		}
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult BagelsHere(string location)
+        {
+            var bagellerService = new BagellerService();
+
+            var model = new SendBagelsAreHereEmailModel()
+            {
+                Location = location,
+                Bagellers = bagellerService.FetchAll()
+            };
+            new MailController().SendBagelsAreHereEmail(model).DeliverAsync();
+
+            return View();
+        }
 	}
 }

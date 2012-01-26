@@ -30,5 +30,16 @@ namespace BagelClub.Controllers
 			return View("~/Views/Mail/SendDayBeforeReminderEmail.html.cshtml", model);
 		}
 
+        public ActionResult SendBagelsAreHereEmail(string id)
+        {
+            var model = new SendBagelsAreHereEmailModel()
+            {
+                Location = "The .NET Development Area"
+            };
+            if (id.SafeEquals("text", StringComparison.OrdinalIgnoreCase))
+                return View("~/Views/Mail/SendBagelsAreHereEmail.txt.cshtml", model);
+            return View("~/Views/Mail/SendBagelsAreHereEmail.html.cshtml", model);
+        }
+
 	}
 }

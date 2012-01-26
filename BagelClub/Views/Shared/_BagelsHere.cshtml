@@ -1,8 +1,8 @@
-﻿<form id="bagel-here-form" class="widget group no-print">
+﻿<form id="bagel-here-form" class="widget group no-print" action="/BagelsHere" method="post">
 	<button type="button" class="btn-here btn">Bagels are here!</button>
 	<fieldset class="super">
 		<label for="bagel-location">They&rsquo;re located:</label>
-		<input type="text" class="txt" name="location" id="bagel-location" placeholder="e.g. 'in the kitchen'" />
+		<input type="text" class="txt required" name="location" id="bagel-location" placeholder="e.g. 'in the .NET area'" />
 		<button type="reset" class="btn-cancel btn">Cancel</button>
 		<button type="submit" class="btn-submit btn">Run Tell Dat</button>
 	</fieldset>

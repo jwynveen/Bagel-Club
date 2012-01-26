@@ -1,0 +1,13 @@
+﻿@model SendBagelsAreHereEmailModel
+@{
+    Layout = "~/Views/Shared/_MailLayout.cshtml";
+}
+<h2>Bagels are here!</h2>
+
+@if (Model.Location.Trim().Length > 0)
+{
+    <p>Where can I find these delicious circles of bread?</p>
+    
+    <p><b>@Model.Location</b></p>
+}
+

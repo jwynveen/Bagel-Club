@@ -95,6 +95,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Bageller.cs" />
+    <Compile Include="Models\SendBagelsAreHereEmailModel.cs" />
     <Compile Include="Models\DayBeforeReminderEmailModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\ShoppingListModel.cs" />
@@ -178,6 +179,9 @@
     <Content Include="Views\Shared\_BagelsHere.cshtml" />
     <Content Include="Views\Mail\SendDayBeforeReminderEmail.html.cshtml" />
     <Content Include="Views\Mail\SendDayBeforeReminderEmail.txt.cshtml" />
+    <Content Include="Views\Home\BagelsHere.cshtml" />
+    <Content Include="Views\Mail\SendBagelsAreHereEmail.html.cshtml" />
+    <Content Include="Views\Mail\SendBagelsAreHereEmail.txt.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

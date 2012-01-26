@@ -38,5 +38,21 @@ namespace BagelClub.Controllers
 			return Email("SendDayBeforeReminderEmail", model);
 		}
 
+        public EmailResult SendBagelsAreHereEmail(SendBagelsAreHereEmailModel model)
+        {
+            string emailList = string.Empty;
+            emailList = HttpContext.Current.Request.IsLocal
+                            ? "tjansen@laughlin.com"
+                            : string.Join(",", model.Bagellers.Select(x => x.Email));
+
+            //They could have multiple emails in the Email column, so join them and then split them
+            foreach (var email in emailList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                To.Add(email);
+
+            From = BagelClubFromEmail;
+            Subject = "Bagels are here!";
+            return Email("SendBagelsAreHereEmail", model);
+        }
+
 	}
 }
