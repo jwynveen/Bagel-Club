@@ -33,6 +33,11 @@ namespace BagelClub.Controllers
 			return View();
 		}
 
+		public ActionResult Template()
+		{
+			return View();
+		}
+
 		public ActionResult SendWeekStartReminderEmail()
 		{
 			var bagellers = new BagellerService().FetchAll();
