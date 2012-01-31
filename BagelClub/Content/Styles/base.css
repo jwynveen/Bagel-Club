@@ -30,8 +30,7 @@
 	top:0;
 	right:0;
 	width:82px;
-	padding-top:.5em;
-	opacity:.5;
+	padding-top:.25em;
 }
 
 #colorblocks li{
@@ -46,25 +45,23 @@
 	color:#fff;
 }
 
-#colorblocks .block1 { background-color:#FFE2B2; }
-#colorblocks .block2 { background-color:#997C4C; }
-#colorblocks .block3 { background-color:#E5C38A; }
-#colorblocks .block4 { background-color:#3D6C99; }
-#colorblocks .block5 { background-color:#8AB8E5; }
-
-/* regal bakery
-FFE2B2,997C4C,E5C38A,3D6C99,8AB8E5
-*/
+#colorblocks .block1 { background-color:#E5E0B7; }
+#colorblocks .block2 { background-color:#BFAF7F; }
+#colorblocks .block3 { background-color:#57432A; }
+#colorblocks .block4 { background-color:#2B1B0D; }
+#colorblocks .block5 { background-color:#3D6C99; }
+#colorblocks .block6 { background-color:#8AB8E5; }
+#colorblocks .block7 { background-color:#913C11; }
 
 /* fresh pot
-E5E0B7,BFAF7F,913C11,2B1B0D,57432A
+lt #E5E0B7
+md lt #BFAF7F
+md dk #57432A
+dk #2B1B0D
+md blue #3D6C99
+lt blue #8AB8E5
+accent orange #913C11
 */
-
-/* french
-76A19A,272123,A68D60,B0C5BB,D9593D
-*/
-
-#colorblocks{ display:none; }
 
 em,
 strong { }
