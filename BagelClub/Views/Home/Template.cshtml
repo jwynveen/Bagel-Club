@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "template";
+	ViewBag.Message = "lorem template";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (!String.IsNullOrEmpty(ViewBag.Message))
+{
+	<h2>@ViewBag.Message</h2>
+}
+<aside id="secondary" class="widget-area" role="complementary">
+	widgets
+</aside>
+<!-- #secondary -->
+<section id="primary">
+	@Html.Partial("_Lorem")
+</section>
+<!-- #primary -->
+
+<ul id="colorblocks" class="item-list no-print">
+	<li class="block1">1</li>
+	<li class="block2">2</li>
+	<li class="block3">3</li>
+	<li class="block4">4</li>
+	<li class="block5">5</li>
+	<li class="block6">6</li>
+	<li class="block7">7</li>
+</ul>
+<!-- #colorblocks -->
