@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+	ViewBag.CacheVersion = "1";
+}
+
+<!DOCTYPE html>
 
 <!--[if lt IE 7 ]><html dir="ltr" lang="en-US" class="no-js ie ie6 lte9 lte8 lte7"><![endif]-->
 <!--[if IE 7 ]><html dir="ltr" lang="en-US" class="no-js ie ie7 lte9 lte8 lte7"><![endif]-->
@@ -10,7 +14,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width" />
 
-	<title>@ViewBag.Title</title>
+	<title>@ViewBag.Title | bagel club | Laughlin Constable</title>
 	<meta name="title" content="@ViewBag.Title" />
 	<meta name="description" content="Laughlin Constable Bagel Club" />
 	<meta name="author" content="Laughlin Constable" />
@@ -20,13 +24,13 @@
 	<meta name="msnbot" content="noindex, nofollow" />
 	<meta name="robots" content="noindex, nofollow, noodp, noydir" />
 
-	<link rel="icon" href="@Url.Content("~/Content/Images/favicon.png")" />
+	<link rel="icon" href="@Url.Content(String.Concat("~/Content/Images/favicon.png?v=", ViewBag.CacheVersion))" />
 	<!--[if lt IE 6 ]>
 	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="@Url.Content("~/Content/Images/favicon.ico")" />
 	<![endif]-->
-	<link rel="apple-touch-icon" href="@Url.Content("~/Content/Images/apple-touch-icon.png?v=1")" />
-	<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Styles/global.css?v=1")" />
-	<script type="text/javascript" src="@Url.Content("~/Content/Scripts/modernizr.min.js?v=1")"></script>
+	<link rel="apple-touch-icon" href="@Url.Content(String.Concat("~/Content/Images/apple-touch-icon.png?v=", ViewBag.CacheVersion))" />
+	<link type="text/css" rel="stylesheet" href="@Url.Content(String.Concat("~/Content/Styles/global.css?v=", ViewBag.CacheVersion))" />
+	<script type="text/javascript" src="@Url.Content(String.Concat("~/Content/Scripts/modernizr.min.js?v=", ViewBag.CacheVersion))"></script>
 </head>
 
 <body class="@ViewBag.BodyClass">
@@ -68,22 +72,16 @@
 		</footer>
     </div>
 	<!-- #container -->
-	<ul id="colorblocks" class="item-list no-print">
-		<li class="block1">1</li>
-		<li class="block2">2</li>
-		<li class="block3">3</li>
-		<li class="block4">4</li>
-		<li class="block5">5</li>
-	</ul>
-<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script> 
-<script type="text/javascript">	window.jQuery || document.write("<script src='@Url.Content("~/Content/Scripts/jquery.min.js?v=1")'>\x3C/script>")</script>
-<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.17/jquery-ui.min.js"></script>
-<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-<script type="text/javascript" src="@Url.Content("~/Content/Scripts/global.js?v=1")"></script> 
-<!--[if lt IE 7 ]>
-<script type="text/javascript" src="@Url.Content("~/Content/Scripts/dd_belatedpng.js?v=1")"></script>
-<script>DD_belatedPNG.fix('img, .png');</script>
-<![endif]-->
+
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script> 
+	<script type="text/javascript">	window.jQuery || document.write("<script src='@Url.Content(String.Concat("~/Content/Scripts/jquery.min.js?v=", ViewBag.CacheVersion))'>\x3C/script>")</script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.17/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="@Url.Content(String.Concat("~/Content/Scripts/global.js?v=", ViewBag.CacheVersion))"></script> 
+	<!--[if lt IE 7 ]>
+	<script type="text/javascript" src="@Url.Content(String.Concat("~/Content/Scripts/dd_belatedpng.js?v=", ViewBag.CacheVersion))"></script>
+	<script>DD_belatedPNG.fix('img, .png');</script>
+	<![endif]-->
 
 </body>
 </html>
