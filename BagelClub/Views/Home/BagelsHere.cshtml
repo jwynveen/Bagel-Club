@@ -1,6 +1,19 @@
-﻿@if (!String.IsNullOrEmpty(ViewBag.Message))
+﻿@{
+    ViewBag.Title = "thank you";
+	ViewBag.BodyClass = "confirmation";
+	ViewBag.Message = "Thank You";
+}
+
+@if (!String.IsNullOrEmpty(ViewBag.Message))
 {
 	<h2>@ViewBag.Message</h2>
 }
-
-<p>Thank you! The club members have been notified that the bagels have arrived. Please print this page and place it next to the the bagel area.</p>
+<aside id="secondary" class="widget-area" role="complementary">
+	@Html.Partial("_UpcomingBagellers", Model.Bagellers)
+</aside>
+<!-- #secondary -->
+<section id="primary">
+	<p>The club members have been notified that the bagels have arrived. Please print this page and place it next to the the bagel area.</p>
+	<!-- TODO: Print "who ordered what" form -->
+</section>
+<!-- #primary -->

@@ -4,26 +4,29 @@
 
 body.home { }
 
+/* ================================================== page:home ===== */
+
+body.about { }
+
 /* ================================================== shopping list ===== */
 
-
 #shopping-list h3 {
-	color:#999;
+	color:#57432A;
 	cursor:pointer;
 	text-transform:none;
 }
 
 #shopping-list .open h3,
 #shopping-list .open h3:hover {
-	color:#888;
+	color:#67533A;
 }
 
 #shopping-list h3:hover {
-	color:#aaa;
+	color:#BFAF7F;
 }
 
 #shopping-list h3 .icon {
-	margin-top: .125em;
+	margin-top:.125em;
 }
 
 #shopping-list .utility{
@@ -31,7 +34,7 @@ body.home { }
 }
 
 #shopping-list ul {
-	color:#999;
+	color:#BFAF7F;
 }
 
 #shopping-list .open ul {
@@ -79,25 +82,22 @@ input[type="checkbox"][checked] + .description {
 	margin-right:.5em;
 }
 
-
-
 /* ================================================== widget:upcoming ===== */
 
-.widget-upcoming .utility{
-}
+.widget-upcoming .utility{ }
 
 .widget-upcoming ul {
 	padding-left:1em;
 }
 
 .widget-upcoming li{
-	color:#ccc;
+	color:#E5E0B7;
 	font-size:14px;
 	clear:both;
 }
 
 .widget-upcoming li:first-child{
-	color:#999;
+	color:#BFAF7F;
 	font-size:18px;
 }
 
