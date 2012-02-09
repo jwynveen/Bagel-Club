@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using ActionMailer.Net.Mvc;
 using BagelClub.Models;
+using Laughlin.Common.Extensions;
 
 namespace BagelClub.Controllers
 {
@@ -15,8 +17,8 @@ namespace BagelClub.Controllers
 		{
 			From = BagelClubFromEmail;
 			var emailList = string.Join(",", model.Select(x => x.Email));
-			if (HttpContext.Current.Request.IsLocal)
-				emailList = "jwynveen@laughlin.com";
+			if (!Environment.MachineName.SafeEquals(ConfigurationManager.AppSettings["RunScheduledTasksFromMachineName"], StringComparison.OrdinalIgnoreCase))
+				emailList = "jwynveen@laughlin.com,tjansen@laughlin.com";
 			
 			//They could have multiple emails in the Email column, so join them and then split them
 			foreach (var email in emailList.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries))
@@ -31,8 +33,10 @@ namespace BagelClub.Controllers
 		public EmailResult SendDayBeforeReminderEmail(DayBeforeReminderEmailModel model)
 		{
 			From = BagelClubFromEmail;
-			To.Add(HttpContext.Current.Request.IsLocal ? "jwynveen@laughlin.com" : model.Bageller.Email);
-			BCC.Add("jwynveen@laughlin.com");
+			To.Add(!Environment.MachineName.SafeEquals(ConfigurationManager.AppSettings["RunScheduledTasksFromMachineName"], StringComparison.OrdinalIgnoreCase)
+					? "jwynveen@laughlin.com,tjansen@laughlin.com"
+					: model.Bageller.Email);
+			BCC.Add("jwynveen@laughlin.com,tjansen@laughlin.com");
 			Subject = "Don't forget the bagels!";
 
 			return Email("SendDayBeforeReminderEmail", model);
@@ -41,9 +45,9 @@ namespace BagelClub.Controllers
         public EmailResult SendBagelsAreHereEmail(SendBagelsAreHereEmailModel model)
         {
             string emailList = string.Empty;
-            emailList = HttpContext.Current.Request.IsLocal
-                            ? "tjansen@laughlin.com"
-                            : string.Join(",", model.Bagellers.Select(x => x.Email));
+        	emailList = !Environment.MachineName.SafeEquals(ConfigurationManager.AppSettings["RunScheduledTasksFromMachineName"], StringComparison.OrdinalIgnoreCase)
+        			? "jwynveen@laughlin.com,tjansen@laughlin.com"
+        			: string.Join(",", model.Bagellers.Select(x => x.Email));
 
             //They could have multiple emails in the Email column, so join them and then split them
             foreach (var email in emailList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
