@@ -1,4 +1,4 @@
-﻿<form id="bagel-here-form" class="widget group no-print" action="/BagelsHere" method="post">
+﻿@using (Html.BeginForm("BagelsHere", "Home", FormMethod.Post, new { id = "bagel-here-form", @class = "widget group no-print" })) {
 	<button type="button" class="btn-here btn">Bagels are Here!</button>
 	<fieldset class="super">
 		<label for="bagel-location">They&rsquo;re located:</label>
@@ -6,4 +6,4 @@
 		<button type="reset" class="btn-cancel btn">Cancel</button>
 		<button type="submit" class="btn-submit btn">Run Tell Dat</button>
 	</fieldset>
-</form>
+}

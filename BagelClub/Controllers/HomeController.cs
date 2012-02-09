@@ -17,13 +17,13 @@ namespace BagelClub.Controllers
 			var bagellers = new BagellerService().FetchAll();
 
 			var model = new HomeModel
-			            	{
-			            		Bagellers = bagellers,
-			            		ShoppingList = new ShoppingListModel
-			            		               	{
-			            		               		Locations = BagelShopService.BuildFullShoppingList(bagellers)
-			            		               	}
-			            	};
+							{
+								Bagellers = bagellers,
+								ShoppingList = new ShoppingListModel
+												{
+													Locations = BagelShopService.BuildFullShoppingList(bagellers)
+												}
+							};
 
 			return View(model);
 		}
@@ -55,10 +55,10 @@ namespace BagelClub.Controllers
 			if (nextBageller.NextPurchaseDate < DateTime.Today.AddDays(7))
 			{
 				var model = new DayBeforeReminderEmailModel
-				            	{
-				            		Bageller = nextBageller,
-				            		ShoppingList = new ShoppingListModel(BagelShopService.BuildFullShoppingList(bagellers))
-				            	};
+								{
+									Bageller = nextBageller,
+									ShoppingList = new ShoppingListModel(BagelShopService.BuildFullShoppingList(bagellers))
+								};
 				new MailController().SendDayBeforeReminderEmail(model).DeliverAsync();
 
 				//Email is sent. Now set the user's next purchase date
@@ -69,19 +69,19 @@ namespace BagelClub.Controllers
 			return null;
 		}
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult BagelsHere(string location)
-        {
-            var bagellerService = new BagellerService();
+		[HttpPost]
+		public ActionResult BagelsHere(string location)
+		{
+			var bagellerService = new BagellerService();
 
-            var model = new SendBagelsAreHereEmailModel()
-            {
-                Location = location,
-                Bagellers = bagellerService.FetchAll()
-            };
-            new MailController().SendBagelsAreHereEmail(model).DeliverAsync();
+			var model = new SendBagelsAreHereEmailModel()
+			{
+				Location = location,
+				Bagellers = bagellerService.FetchAll()
+			};
+			new MailController().SendBagelsAreHereEmail(model).DeliverAsync();
 
-            return View();
-        }
+			return View(model);
+		}
 	}
 }
