@@ -40,7 +40,18 @@ namespace BagelClub.Controllers
 
 		public ActionResult SendWeekStartReminderEmail()
 		{
-			var bagellers = new BagellerService().FetchAll();
+			var bagellerService = new BagellerService();
+			var bagellers = bagellerService.FetchAll();
+			var nextBageller = bagellers.First();
+			//set the next purchase dates for bagellers who have already made their purchase
+			while (nextBageller.NextPurchaseDate.IsBefore(DateTime.Now))
+			{
+				bagellerService.SetNextPurchaseDate(nextBageller);
+				bagellerService.Save(nextBageller);
+
+				bagellers = bagellerService.FetchAll();
+				nextBageller = bagellers.First();
+			}
 			new MailController().SendWeekStartReminderEmail(bagellers).DeliverAsync();
 
 			return null;
@@ -60,10 +71,6 @@ namespace BagelClub.Controllers
 									ShoppingList = new ShoppingListModel(BagelShopService.BuildFullShoppingList(bagellers))
 								};
 				new MailController().SendDayBeforeReminderEmail(model).DeliverAsync();
-
-				//Email is sent. Now set the user's next purchase date
-				bagellerService.SetNextPurchaseDate(nextBageller);
-				bagellerService.Save(nextBageller);
 			}
 
 			return null;
