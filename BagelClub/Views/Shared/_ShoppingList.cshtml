@@ -16,7 +16,11 @@
 				<ul>
 				@foreach (var bagel in location.Bagels)
 				{ 
-					<li><label><input type="checkbox" /><span class="description">@bagel.Key</span> <span class="quantity">(@bagel.Value)</span></label></li>
+					<li><label><input type="checkbox" /><span class="description">@bagel.Name</span> <span class="quantity">(@bagel.Quantity)</span></label>
+					@if(!bagel.Alternates.IsNullOrEmpty()) {
+						<span class="alternates">Alternates: @string.Join(",", bagel.Alternates)</span>
+					}
+					</li>
 				}
 				</ul>
 			</li>

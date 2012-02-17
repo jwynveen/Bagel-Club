@@ -53,6 +53,12 @@ body.about { }
 	font-size:.75em;
 }
 
+#shopping-list .alternates {
+	font-size: .75em;
+	display: inline-block;
+	margin-left: 20px;
+}
+
 #shopping-list input[type="checkbox"] {
 	display:none;
 	float:left;

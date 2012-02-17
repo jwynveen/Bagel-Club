@@ -20,7 +20,10 @@ namespace BagelClub.Services
 			var shop = new BagelShop(bagelShopType.GetName());
 			foreach (var bageller in bagellers)
 			{
-				shop.AddBagel(typeof (Bageller).GetProperty(bagelShopType.ToString()).GetValue(bageller, null).ToString());
+				var bagels = string.Join(",",
+				                         typeof (Bageller).GetProperty(bagelShopType.ToString()).GetValue(bageller, null).ToString(),
+				                         bageller.Brueggers, bageller.Einstein, bageller.Sendiks);
+				shop.AddBagel(bagels);
 			}
 			return shop;
 		}
