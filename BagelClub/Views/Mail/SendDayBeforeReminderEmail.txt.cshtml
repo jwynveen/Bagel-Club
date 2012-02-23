@@ -15,7 +15,7 @@ foreach (var location in Model.ShoppingList.Locations)
 <text>@Html.Raw(location.Name)</text>
 foreach (var bagel in location.Bagels)
 { 
-	<text>@bagel.Key (@bagel.Value)</text>
+	<text>@bagel.Name (@bagel.Quantity)</text>
 }
 }
 }

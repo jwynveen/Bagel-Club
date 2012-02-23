@@ -19,7 +19,7 @@
 		<ul style="list-style-type:none; padding-left:6px">
 		@foreach (var bagel in location.Bagels)
 		{ 
-			<li><label><input type="checkbox" /><span class="description">@bagel.Key</span> <span class="quantity">(@bagel.Value)</span></label></li>
+			<li><label><input type="checkbox" /><span class="description">@bagel.Name</span> <span class="quantity">(@bagel.Quantity)</span></label></li>
 		}
 		</ul>
 	</li>
