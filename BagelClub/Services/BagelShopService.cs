@@ -17,13 +17,10 @@ namespace BagelClub.Services
 
 		public static BagelShop BuildIndividualShoppingList(BagelShopType bagelShopType, IEnumerable<Bageller> bagellers)
 		{
-			var shop = new BagelShop(bagelShopType.GetName());
+			var shop = new BagelShop(bagelShopType);
 			foreach (var bageller in bagellers)
 			{
-				var bagels = string.Join(",",
-				                         typeof (Bageller).GetProperty(bagelShopType.ToString()).GetValue(bageller, null).ToString(),
-				                         bageller.Brueggers, bageller.Einstein, bageller.Sendiks);
-				shop.AddBagel(bagels);
+				shop.AddBagel(bageller.GetSelection(bagelShopType));
 			}
 			return shop;
 		}

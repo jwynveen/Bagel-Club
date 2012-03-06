@@ -1,32 +1,75 @@
 ﻿@model ShoppingListModel
 <section id="shopping-list" class="group">
 	<h2>shopping list</h2>
-	@if (Model.Locations.Any())
+	<select name="list-type">
+		<option value="bagel">By Bagel</option>
+		<option value="bageller">By Bageller</option>
+	</select>
+	<select name="bagel-shop-type">
+		<option value="">All</option>
+	@foreach(BagelShopType shopType in Enum.GetValues(typeof(BagelShopType)))
 	{
-	<fieldset class="super">
-		<div class="utility no-print">
-			<button type="button" class="btn btn-print">Print All</button>
-			<button type="button" class="btn btn-edit">Edit</button>
-		</div>
-		<ul class="item-list">
-		@foreach (var location in Model.Locations)
+		<option value="-@shopType.ToString()">@shopType.GetName()</option>
+	}
+	</select>
+	@if (Model.Locations.Any() || Model.Bagellers.Any())
+	{
+		if (Model.Locations.Any())
 		{
-			<li>
-				<h3 class="icon-accordion">@location.Name</h3>
-				<ul>
-				@foreach (var bagel in location.Bagels)
-				{ 
-					<li><label><input type="checkbox" /><span class="description">@bagel.Name</span> <span class="quantity">(@bagel.Quantity)</span></label>
-					@if(!bagel.Alternates.IsNullOrEmpty()) {
-						<span class="alternates">Alternates: @string.Join(",", bagel.Alternates)</span>
+		<fieldset class="super bagel">
+			<div class="utility no-print">
+				<button type="button" class="btn btn-print">Print All</button>
+				@*<button type="button" class="btn btn-edit">Edit</button>*@
+			</div>
+			<ul class="item-list">
+			@foreach (var location in Model.Locations)
+			{
+				<li class="shop shop-@location.Type.ToString()">
+					<h3 class="icon-accordion">@location.Name</h3>
+					<ul>
+					@foreach (var bagel in location.Bagels)
+					{ 
+						<li><label><input type="checkbox" /><span class="description">@bagel.Name</span> <span class="quantity">(@bagel.Quantity)</span></label>
+						@if(!bagel.Alternates.IsNullOrEmpty()) {
+							<span class="alternates">Alternates: @string.Join(",", bagel.Alternates)</span>
+						}
+						</li>
 					}
-					</li>
-				}
-				</ul>
-			</li>
+					</ul>
+				</li>
+			}
+			</ul>
+		</fieldset>
 		}
-		</ul>
-	</fieldset>
+		if (Model.Bagellers.Any())
+		{ 
+		<fieldset class="super bageller " style="display:none;">
+			<div class="utility no-print">
+				<button type="button" class="btn btn-print">Print All</button>
+				@*<button type="button" class="btn btn-edit">Edit</button>*@
+			</div>
+			<ul class="item-list">
+			@foreach (BagelShopType location in Enum.GetValues(typeof(BagelShopType)))
+			{
+				<li class="shop shop-@location.ToString()">
+					<h3 class="icon-accordion">@location.GetName()</h3>
+					<ul>
+					@foreach (var bageller in Model.Bagellers)
+					{ 
+						var selections = bageller.GetSelection(location);
+						var firstChoice = selections.Substring(0, selections.IndexOf(','));
+						var alternates = selections.Substring(selections.IndexOf(',')+1);
+						<li><label><input type="checkbox" /><span class="description">@bageller.Name:</span> 
+							<span class="first-choice">@firstChoice</span></label>
+							<span class="alternates">@alternates</span>
+						</li>
+					}
+					</ul>
+				</li>
+			}
+			</ul>
+		</fieldset>
+		}
 	}
 	else
 	{

@@ -17,13 +17,10 @@ namespace BagelClub.Controllers
 			var bagellers = new BagellerService().FetchAll();
 
 			var model = new HomeModel
-							{
-								Bagellers = bagellers,
-								ShoppingList = new ShoppingListModel
-												{
-													Locations = BagelShopService.BuildFullShoppingList(bagellers)
-												}
-							};
+			            	{
+			            		Bagellers = bagellers,
+			            		ShoppingList = new ShoppingListModel(BagelShopService.BuildFullShoppingList(bagellers), bagellers)
+			            	};
 
 			return View(model);
 		}

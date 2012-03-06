@@ -9,22 +9,26 @@ namespace BagelClub.Models
 	public class ShoppingListModel
 	{
 		public ShoppingListModel(){}
-		public ShoppingListModel(IEnumerable<BagelShop> locations)
+		public ShoppingListModel(IEnumerable<BagelShop> locations) : this(locations, null){}
+		public ShoppingListModel(IEnumerable<Bageller> bagellers) : this(null, bagellers){}
+		public ShoppingListModel(IEnumerable<BagelShop> locations, IEnumerable<Bageller> bagellers)
 		{
 			Locations = locations;
+			Bagellers = bagellers.OrderBy(x => x.Name);
 		}
 		public IEnumerable<BagelShop> Locations { get; set; }
+		public IEnumerable<Bageller> Bagellers { get; set; }
 	}
 
 	public class BagelShop
 	{
-		public BagelShop(string name)
+		public BagelShop(BagelShopType type)
 		{
-			Name = name;
+			Type = type;
 			Bagels = new List<Bagel>();
 		}
-		public string Name { get; set; }
-		//public Dictionary<string, int> Bagels { get; set; }
+		public string Name { get { return Type.GetName(); } }
+		public BagelShopType Type { get; set; }
 		public List<Bagel> Bagels { get; set; }
 		public void AddBagel (string bagel)
 		{
