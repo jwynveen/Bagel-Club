@@ -17,7 +17,7 @@ namespace BagelClub.Services
 		public BagellerService()
 		{
 			_connectionString = ConfigurationManager.ConnectionStrings["ApplicationServices"].ToString();
-			_documentStore = new DocumentStore {Url = "http://jwynveen-think:8080"};
+			_documentStore = new DocumentStore { ConnectionStringName  = "RavenDB"};
 			_documentStore.Initialize();
 		}
 
@@ -29,13 +29,6 @@ namespace BagelClub.Services
 				items = from bageller in session.Query<Bageller>()
 				        orderby bageller.NextPurchaseDate ascending
 				        select bageller;
-				//.Where(x => x.Country == "Israel")
-				//.FirstOrDefault();
-
-				// We can also load by ID: session.Load<Company>(companyId);
-
-				//entity.Name = "Another Company";
-				//session.SaveChanges(); // will send the change to the database
 			}
 			return items;
 		}
