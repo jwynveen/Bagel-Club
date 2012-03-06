@@ -7,14 +7,21 @@ using BagelClub.Models;
 using BagelClub.Services;
 using Laughlin.Common.Extensions;
 using Laughlin.Common.Utilities;
+using StructureMap;
 
 namespace BagelClub.Controllers
 {
 	public class HomeController : Controller
 	{
+		private readonly IBagellerService _bagellerService;
+		public HomeController(IBagellerService bagellerService)
+		{
+			_bagellerService = bagellerService;
+		}
+
 		public ActionResult Index()
 		{
-			var bagellers = new BagellerService().FetchAll();
+			var bagellers = _bagellerService.FetchAll();
 
 			var model = new HomeModel
 			            	{

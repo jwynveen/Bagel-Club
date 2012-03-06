@@ -10,7 +10,16 @@ using Raven.Client.Document;
 
 namespace BagelClub.Services
 {
-	public class BagellerService
+	public interface IBagellerService
+	{
+		IEnumerable<Bageller> FetchAll();
+		Bageller GetLastBageller();
+		void SetNextPurchaseDate(Bageller nextBageller);
+
+		Bageller Save(Bageller item);
+		bool Delete(Bageller item);
+	}
+	public class BagellerService : IBagellerService
 	{
 		private readonly string _connectionString;
 		private readonly DocumentStore _documentStore;
