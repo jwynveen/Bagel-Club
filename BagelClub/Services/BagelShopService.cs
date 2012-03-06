@@ -20,7 +20,7 @@ namespace BagelClub.Services
 			var shop = new BagelShop(bagelShopType);
 			foreach (var bageller in bagellers)
 			{
-				shop.AddBagel(bageller.GetSelection(bagelShopType));
+				shop.AddBagel(string.Join(",", bageller.GetSelection(bagelShopType).Select(x => x.Bagel)));
 			}
 			return shop;
 		}

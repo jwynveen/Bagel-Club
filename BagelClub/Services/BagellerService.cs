@@ -6,28 +6,36 @@ using System.Linq;
 using BagelClub.Models;
 using Dapper;
 using DapperExtensions;
+using Raven.Client.Document;
 
 namespace BagelClub.Services
 {
 	public class BagellerService
 	{
 		private readonly string _connectionString;
+		private readonly DocumentStore _documentStore;
 		public BagellerService()
 		{
 			_connectionString = ConfigurationManager.ConnectionStrings["ApplicationServices"].ToString();
+			_documentStore = new DocumentStore {Url = "http://jwynveen-think:8080"};
+			_documentStore.Initialize();
 		}
 
 		public IEnumerable<Bageller> FetchAll()
 		{
 			IEnumerable<Bageller> items;
-			using (var connection = new SqlConnection(_connectionString))
+			using (var session = _documentStore.OpenSession())
 			{
-				connection.Open();
-				using (var transaction = connection.BeginTransaction())
-				{
-					items = connection.Query<Bageller>("select * from Bageller order by NextPurchaseDate asc", null, transaction);
-				}
-				connection.Close();
+				items = from bageller in session.Query<Bageller>()
+				        orderby bageller.NextPurchaseDate ascending
+				        select bageller;
+				//.Where(x => x.Country == "Israel")
+				//.FirstOrDefault();
+
+				// We can also load by ID: session.Load<Company>(companyId);
+
+				//entity.Name = "Another Company";
+				//session.SaveChanges(); // will send the change to the database
 			}
 			return items;
 		}
@@ -35,14 +43,11 @@ namespace BagelClub.Services
 		public Bageller GetLastBageller()
 		{
 			Bageller lastBageller;
-			using (var connection = new SqlConnection(_connectionString))
+			using (var session = _documentStore.OpenSession())
 			{
-				connection.Open();
-				using (var transaction = connection.BeginTransaction())
-				{
-					lastBageller = connection.Query<Bageller>("select top 1 * from Bageller order by NextPurchaseDate desc", null, transaction).First();
-				}
-				connection.Close();
+				lastBageller = (from bageller in session.Query<Bageller>()
+				                orderby bageller.NextPurchaseDate descending
+				                select bageller).Take(1).SingleOrDefault();
 			}
 			return lastBageller;
 		}
@@ -60,6 +65,7 @@ namespace BagelClub.Services
 		}
 		public bool Delete(Bageller item)
 		{
+			return false;
 			bool success;
 			using (var connection = new SqlConnection(_connectionString))
 			{
@@ -75,6 +81,7 @@ namespace BagelClub.Services
 		}
 		private Bageller Insert(Bageller item)
 		{
+			return null;
 			bool success;
 			using (var connection = new SqlConnection(_connectionString))
 			{
@@ -92,6 +99,7 @@ namespace BagelClub.Services
 		}
 		private Bageller Update(Bageller item)
 		{
+			return null;
 			bool success;
 			using (var connection = new SqlConnection(_connectionString))
 			{

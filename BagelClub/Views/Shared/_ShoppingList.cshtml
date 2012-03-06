@@ -56,12 +56,14 @@
 					<ul>
 					@foreach (var bageller in Model.Bagellers)
 					{ 
-						var selections = bageller.GetSelection(location);
-						var firstChoice = selections.Substring(0, selections.IndexOf(','));
-						var alternates = selections.Substring(selections.IndexOf(',')+1);
+						var selections = bageller.GetSelection(location).Select(x => x.Bagel).Distinct();
+						var firstChoice = selections.ElementAt(0);
+						var alternates = selections.Count() > 1 ? string.Join(", ", selections.Skip(1)) : string.Empty;
 						<li><label><input type="checkbox" /><span class="description">@bageller.Name:</span> 
 							<span class="first-choice">@firstChoice</span></label>
+							@if (!alternates.IsNullOrEmpty()){
 							<span class="alternates">@alternates</span>
+							}
 						</li>
 					}
 					</ul>
