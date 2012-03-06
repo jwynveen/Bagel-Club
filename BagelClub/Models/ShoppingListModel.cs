@@ -71,11 +71,11 @@ namespace BagelClub.Models
 	public enum BagelShopType
 	{
 		[Display(Name = "Bruegger's")]
-		Brueggers,
+		Brueggers = 1,
 		[Display(Name = "Einstein")]
-		Einstein,
+		Einstein = 2,
 		[Display(Name = "Sendik's")]
-		Sendiks
+		Sendiks = 3
 	}
 
 	public class Bagel
