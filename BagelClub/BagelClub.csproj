@@ -80,6 +80,9 @@
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="Omu.ValueInjecter">
+      <HintPath>..\packages\valueinjecter.2.3\lib\Omu.ValueInjecter.dll</HintPath>
+    </Reference>
     <Reference Include="Raven.Abstractions">
       <HintPath>..\packages\RavenDB.1.0.701\lib\net40\Raven.Abstractions.dll</HintPath>
     </Reference>
@@ -142,6 +145,7 @@
     <Compile Include="Services\BagelShopService.cs" />
     <Compile Include="Tasks\TaskRegistry.cs" />
     <Compile Include="Tasks\WeekStartReminderTask.cs" />
+    <Compile Include="ViewModels\BagellerEditModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\glimpse.mvc3.readme.txt" />
@@ -221,6 +225,8 @@
     <Content Include="Views\Mail\SendBagelsAreHereEmail.html.cshtml" />
     <Content Include="Views\Mail\SendBagelsAreHereEmail.txt.cshtml" />
     <Content Include="Views\Home\Template.cshtml" />
+    <Content Include="Views\Bageller\Index.cshtml" />
+    <Content Include="Views\Bageller\Edit.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

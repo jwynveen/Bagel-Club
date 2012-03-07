@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Laughlin.Common.Extensions;
 
@@ -8,14 +9,17 @@ namespace BagelClub.Models
 	public class Bageller
 	{
 		public string Id { get; set; }
-		public int BagellerId { get; set; }
+		public int BagellerId { get { return Id.Replace("bagellers/", string.Empty).ToSafeInt(); } }
+		[Required]
 		public string Name { get; set; }
+		[Required]
 		public string Email { get; set; }
 		public IEnumerable<BagelChoice> Choices { get; set; }
-		public string Brueggers { get; set; }
-		public string Einstein { get; set; }
-		public string Sendiks { get; set; }
+//		public string Brueggers { get; set; }
+//		public string Einstein { get; set; }
+//		public string Sendiks { get; set; }
 		public Location PurchaseLocation { get; set; }
+		[Display(Name = "Next Purchase Date")]
 		public DateTime NextPurchaseDate { get; set; }
 
 		public IEnumerable<BagelChoice> GetSelection(BagelShopType bagelShopType)

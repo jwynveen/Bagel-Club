@@ -232,7 +232,7 @@ textarea:focus {
 
 /* ================================================== base:btns + icons ===== */
 
-.btn {
+.btn, a.btn {
 	display:inline-block;
 	font-family:Chunk, Arial, Helvetica, Sans-Serif;
 	font-size:14px;

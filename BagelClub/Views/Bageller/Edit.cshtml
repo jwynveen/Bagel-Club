@@ -1,0 +1,42 @@
+﻿@model BagellerEditModel
+
+@{
+	ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+	@Html.ValidationSummary()
+	<fieldset class="super">
+		<legend>Bageller</legend>
+
+		@Html.HiddenFor(model => model.Item.Id)
+
+		@Html.HiddenFor(model => model.Item.BagellerId)
+		
+		<div>
+			@Html.LabelFor(model => model.Item.Name)
+			@Html.EditorFor(model => model.Item.Name)
+		</div>
+
+		<div class="editor-label">
+			@Html.LabelFor(model => model.Item.Email)
+			@Html.EditorFor(model => model.Item.Email)
+		</div>
+
+		<div class="editor-label">
+			@Html.LabelFor(model => model.Item.NextPurchaseDate)
+			@Html.DisplayFor(model => model.Item.NextPurchaseDate)
+		</div>
+
+		<p>
+			<button type="submit" class="btn">Save</button>
+		</p>
+	</fieldset>
+}
+
+<div>
+	@Html.ActionLink("Back to List", "Index")
+</div>
+

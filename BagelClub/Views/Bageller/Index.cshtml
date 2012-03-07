@@ -1,0 +1,37 @@
+﻿@model IEnumerable<BagelClub.Models.Bageller>
+
+@{
+	ViewBag.Title = "Index";
+}
+
+<p>@Html.ActionLink("Create New", "Create")</p>
+<table class="super">
+	<caption>Bagellers</caption>
+	<thead>
+		<tr>
+			<th></th>
+			<th>
+				Name
+			</th>
+			<th>
+				Email
+			</th>
+			<th>
+				NextPurchaseDate
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+	@foreach (var item in Model) {
+		<tr>
+			<td>
+				@Html.ActionLink("Edit", "Edit", new { id=item.BagellerId })
+			</td>
+			<td>@item.Name</td>
+			<td>@item.Email</td>
+			<td>@item.NextPurchaseDate.ToShortDateString()</td>
+		</tr>
+	}
+	</tbody>
+</table>
+
