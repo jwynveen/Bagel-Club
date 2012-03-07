@@ -20,12 +20,16 @@
 			@Html.EditorFor(model => model.Item.Name)
 		</div>
 
-		<div class="editor-label">
+		<div>
 			@Html.LabelFor(model => model.Item.Email)
 			@Html.EditorFor(model => model.Item.Email)
 		</div>
+		<div>
+			@Html.LabelFor(model => model.Item.PurchaseLocation)
+			@Html.DropDownListFor(model => model.Item.PurchaseLocation.LocationId, Model.Locations)
+		</div>
 
-		<div class="editor-label">
+		<div>
 			@Html.LabelFor(model => model.Item.NextPurchaseDate)
 			@Html.DisplayFor(model => model.Item.NextPurchaseDate)
 		</div>

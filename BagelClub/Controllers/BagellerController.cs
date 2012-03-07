@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using BagelClub.Models;
 using BagelClub.Services;
 using BagelClub.ViewModels;
-using Raven.Client.Document;
+using Laughlin.Common.Extensions;
 
 namespace BagelClub.Controllers
 {
@@ -45,24 +44,17 @@ namespace BagelClub.Controllers
 		
 		public ActionResult Edit(int id)
 		{
-			var item = _bagellerService.FetchByBagellerId(id);
+			var item = id == 0 ? new Bageller() : _bagellerService.FetchByBagellerId(id);
 			if (item == null) return RedirectToAction("Index");
 
-			return View(new BagellerEditModel {Item = item});
+			var model = new BagellerEditModel {Item = item, Locations = GetLocationSelectList(item)};
+			return View(model);
 		}
 		[HttpPost]
 		public ActionResult Edit(int id, BagellerEditModel model, FormCollection collection)
 		{
 			if (ModelState.IsValid)
 			{
-				/*var documentStore = new DocumentStore { ConnectionStringName = "RavenDB" };
-				documentStore.Initialize();
-				using (var session = documentStore.OpenSession())
-				{
-					var item = session.Load<Bageller>(model.Item.Id);
-					item.Name = model.Item.Name;
-					session.SaveChanges();
-				}*/
 				model.Item = _bagellerService.FetchByBagellerId(id);
 				TryUpdateModel(model);
 				
@@ -70,7 +62,21 @@ namespace BagelClub.Controllers
 
 				return RedirectToAction("Index");
 			}
+			model.Locations = GetLocationSelectList(model.Item);
 			return View(model);
+		}
+
+		private static IEnumerable<SelectListItem> GetLocationSelectList(Bageller item)
+		{
+			var items = (from BagelShopType location in Enum.GetValues(typeof (BagelShopType))
+			                          select new SelectListItem
+			                                 	{
+			                                 		Text = location.GetName(),
+			                                 		Value = ((int) location).ToString(),
+			                                 		Selected = (int) location == item.PurchaseLocation.LocationId
+			                                 	}).ToList();
+			items.Insert(0, new SelectListItem {Text = "No Preference", Value = "0"});
+			return items;
 		}
 
 		//

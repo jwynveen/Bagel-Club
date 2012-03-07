@@ -18,7 +18,9 @@ namespace BagelClub.Models
 //		public string Brueggers { get; set; }
 //		public string Einstein { get; set; }
 //		public string Sendiks { get; set; }
+		[Display(Name = "Purchase Location")]
 		public Location PurchaseLocation { get; set; }
+
 		[Display(Name = "Next Purchase Date")]
 		public DateTime NextPurchaseDate { get; set; }
 
@@ -39,8 +41,13 @@ namespace BagelClub.Models
 	public class Location
 	{
 		public string Id { get; set; }
-		public int LocationId { get { return Id.Replace("locations/", string.Empty).ToSafeInt(); } }
+		public int LocationId
+		{
+			get { return (Id??string.Empty).Replace("locations/", string.Empty).ToSafeInt(); }
+			set { Id = "locations/" + value; }
+		}
 		public string Name { get; set; }
+		public BagelShopType BagelShop { get { return (BagelShopType) LocationId; } }
 	}
 
 	public class BagelChoice
