@@ -82,6 +82,6 @@
 	<script type="text/javascript" src="@Url.Content(String.Concat("~/Content/Scripts/dd_belatedpng.js?v=", ViewBag.CacheVersion))"></script>
 	<script>DD_belatedPNG.fix('img, .png');</script>
 	<![endif]-->
-
+	@RenderSection("ScriptContent", false)
 </body>
 </html>

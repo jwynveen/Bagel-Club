@@ -47,7 +47,12 @@ namespace BagelClub.Controllers
 			var item = id == 0 ? new Bageller() : _bagellerService.FetchByBagellerId(id);
 			if (item == null) return RedirectToAction("Index");
 
-			var model = new BagellerEditModel {Item = item, Locations = GetLocationSelectList(item)};
+			var model = new BagellerEditModel
+			            	{
+			            		Item = item,
+			            		Locations = GetLocationSelectList(item),
+			            		ChoiceLocations = GetLocationSelectList()
+			            	};
 			return View(model);
 		}
 		[HttpPost]
@@ -63,19 +68,21 @@ namespace BagelClub.Controllers
 				return RedirectToAction("Index");
 			}
 			model.Locations = GetLocationSelectList(model.Item);
+			model.Locations = GetLocationSelectList();
 			return View(model);
 		}
 
-		private static IEnumerable<SelectListItem> GetLocationSelectList(Bageller item)
+		private static IEnumerable<SelectListItem> GetLocationSelectList(Bageller item = null)
 		{
 			var items = (from BagelShopType location in Enum.GetValues(typeof (BagelShopType))
 			                          select new SelectListItem
 			                                 	{
 			                                 		Text = location.GetName(),
 			                                 		Value = ((int) location).ToString(),
-			                                 		Selected = (int) location == item.PurchaseLocation.LocationId
+			                                 		Selected = item != null && item.PurchaseLocation != null && (int) location == item.PurchaseLocation.LocationId
 			                                 	}).ToList();
-			items.Insert(0, new SelectListItem {Text = "No Preference", Value = "0"});
+			if (item != null)
+				items.Insert(0, new SelectListItem {Text = "No Preference", Value = "0"});
 			return items;
 		}
 

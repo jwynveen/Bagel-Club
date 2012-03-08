@@ -3,7 +3,13 @@
 @{
 	ViewBag.Title = "Edit";
 }
-
+@section ScriptContent{
+<script type="text/javascript" src="@Url.Content(String.Concat("~/Content/Scripts/bageller.edit.js?v=", ViewBag.CacheVersion))"></script> 
+<script type="text/javascript">
+Bageller.NextIndex = @Model.Item.Choices.Count();
+Bageller.ListSelect = '#choice-list';
+</script>
+}
 <h2>Edit</h2>
 
 @using (Html.BeginForm()) {
@@ -30,12 +36,37 @@
 		</div>
 
 		<div>
+			@Html.LabelFor(model => model.Item.Choices)
+			<div>
+				<div id="choice-template" style="display:none;">
+					@Html.DropDownList("Item.Choices{index}.Location.LocationId", Model.ChoiceLocations, new { @class = "dynamic-required", @id = "", data_val = "true", data_val_required = "Choice location is required", data_val_number = "Choice location is required" })
+					@Html.TextBox("Item.Choices{index}.Bagel", null, new { placeholder = "Bagel selection", @class = "dynamic-required", @id = "", data_val = "true", data_val_required = "Choice bagel is required" })
+					<a href="javascript:;" onclick="$(this).parent().remove();">Remove</a>
+				</div>
+				<a href="javascript:;" onclick="Bageller.Add('#choice-template');">Add</a>
+				<ul id="choice-list">
+				@for (int j = 0; j < Model.Item.Choices.Count(); j++)
+				{
+					var locations = new List<SelectListItem>();
+					locations.AddRange(Model.ChoiceLocations.Select(x => new SelectListItem{ Text = x.Text, Value = x.Value}));
+					locations.First(x => x.Value == Model.Item.Choices.ElementAt(j).Location.LocationId.ToString()).Selected = true;
+					<li>
+						@Html.DropDownList("Item.Choices[" + j + "].Location.LocationId", locations, new { @class = "dynamic-required", @id = "" })
+						@Html.TextBox("Item.Choices[" + j + "].Bagel", Model.Item.Choices.ElementAt(j).Bagel, new { placeholder = "Bagel selection", @class = "dynamic-required", @id = "" })
+						<a href="javascript:;" onclick="Bageller.Remove(this);">Remove</a>
+					</li>
+	}
+				</ul>
+			</div>
+		</div>
+
+		<div>
 			@Html.LabelFor(model => model.Item.NextPurchaseDate)
 			@Html.DisplayFor(model => model.Item.NextPurchaseDate)
 		</div>
 
 		<p>
-			<button type="submit" class="btn">Save</button>
+			<button type="submit" class="btn btn-submit">Save</button>
 		</p>
 	</fieldset>
 }

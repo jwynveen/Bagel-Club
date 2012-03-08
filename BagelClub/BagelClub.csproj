@@ -152,6 +152,7 @@
     <Content Include="App_Readme\glimpse.readme.txt" />
     <Content Include="Content\Fonts\chunk.svg" />
     <Content Include="Content\Fonts\mtf_chubb.svg" />
+    <Content Include="Content\Scripts\bageller.edit.js" />
     <Content Include="Content\Scripts\dd_belatedpng.js" />
     <Content Include="Content\Scripts\global.js" />
     <Content Include="Content\Scripts\jquery.min.js" />
