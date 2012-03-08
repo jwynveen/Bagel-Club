@@ -11,7 +11,7 @@ var Bageller = {
 	ListSelector: '#choice-list',
 	Add: function (templateSelector) {
 		var controls = $(templateSelector).html().replace(/{index}/g, '[' + this.NextIndex + ']');
-		var element = $('<li>' + controls + '</li>').appendTo(this.ListSelector);
+		var element = $('<li class="ui-state-default">' + controls + '</li>').appendTo(this.ListSelector);
 		jQuery.validator.unobtrusive.parse('form');
 		this.NextIndex++;
 	},
