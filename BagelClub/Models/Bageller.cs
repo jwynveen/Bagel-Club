@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using DataAnnotationsExtensions;
 using Laughlin.Common.Extensions;
 using Newtonsoft.Json;
 
@@ -24,6 +25,7 @@ namespace BagelClub.Models
 		[Required]
 		public string Name { get; set; }
 		[Required]
+		[Email]
 		public string Email { get; set; }
 		[Display(Name = "What you want from where...")]
 		public IEnumerable<BagelChoice> Choices { get; set; }
