@@ -75,14 +75,14 @@ $(function(){
 		@if (!Model.IsNew) { 
 		<div>
 			@Html.LabelFor(model => model.Item.NextPurchaseDate)
-			@Html.DisplayFor(model => model.Item.NextPurchaseDate)
+			@Model.Item.NextPurchaseDate.ToShortDateString()
 		</div>
 		}
 
 		<p>
 			<button type="submit" class="btn btn-submit">Save</button>
 			@if (!Model.IsNew) {
-			<a href="@Url.Action("Delete", new { id = Model.Item.BagellerId })">Delete</a>
+			<a href="@Url.Action("Delete", new { id = Model.Item.BagellerId })" onclick="return confirm('Are you sure you want to delete this bageller? THIS CANNOT BE UNDONE!');">Delete</a>
 			}
 		</p>
 	</fieldset>
