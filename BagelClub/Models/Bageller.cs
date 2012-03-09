@@ -1,21 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using BagelClub.ViewModels;
+using DataAnnotationsExtensions;
 using Laughlin.Common.Extensions;
+using Newtonsoft.Json;
 
 namespace BagelClub.Models
 {
 	public class Bageller
 	{
+		public Bageller()
+		{
+			Choices = (from BagelShopType bagelShopType in Enum.GetValues(typeof (BagelShopType))
+			           select new BagelChoice {Location = new Location {LocationId = (int) bagelShopType}}).ToList();
+		}
 		public string Id { get; set; }
-		public int BagellerId { get; set; }
+		[JsonIgnore]
+		public int BagellerId
+		{
+			get { return (Id ?? string.Empty).Replace("bagellers/", string.Empty).ToSafeInt(); }
+			set { Id = "bagellers/" + value; }
+		}
+		[Required]
 		public string Name { get; set; }
+		[Required]
+		[Email]
 		public string Email { get; set; }
+		[Display(Name = "What you want from where...")]
 		public IEnumerable<BagelChoice> Choices { get; set; }
-		public string Brueggers { get; set; }
-		public string Einstein { get; set; }
-		public string Sendiks { get; set; }
+
+		[Display(Name = "Where are you buying from?")]
 		public Location PurchaseLocation { get; set; }
+
+		[Display(Name = "Next Purchase Date")]
 		public DateTime NextPurchaseDate { get; set; }
 
 		public IEnumerable<BagelChoice> GetSelection(BagelShopType bagelShopType)
@@ -29,24 +48,6 @@ namespace BagelClub.Models
 		public override string ToString()
 		{
 			return Name;
-		}
-	}
-
-	public class Location
-	{
-		public string Id { get; set; }
-		public int LocationId { get { return Id.Replace("locations/", string.Empty).ToSafeInt(); } }
-		public string Name { get; set; }
-	}
-
-	public class BagelChoice
-	{
-		public string Bagel { get; set; }
-		public Location Location { get; set; }
-		public int Ordering { get; set; }
-		public override string ToString()
-		{
-			return Bagel;
 		}
 	}
 }

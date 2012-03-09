@@ -1,24 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
 using System.Linq;
 using BagelClub.Models;
-using Dapper;
-using DapperExtensions;
+using Laughlin.Common.Extensions;
+using Omu.ValueInjecter;
 using Raven.Client.Document;
 
 namespace BagelClub.Services
 {
-	public class BagellerService
+	public interface IBagellerService
 	{
-		private readonly string _connectionString;
+		IEnumerable<Bageller> FetchAll();
+		Bageller FetchById(string id);
+		Bageller FetchByBagellerId(int id);
+		Bageller GetLastBageller();
+		void SetNextPurchaseDate(Bageller nextBageller);
+		DateTime ResetNextPurchaseDates(int addedWeeks = 0);
+
+		Bageller Save(Bageller item);
+		Bageller Delete(int id);
+	}
+	public class BagellerService : IBagellerService
+	{
 		private readonly DocumentStore _documentStore;
 		public BagellerService()
 		{
-			_connectionString = ConfigurationManager.ConnectionStrings["ApplicationServices"].ToString();
 			_documentStore = new DocumentStore { ConnectionStringName  = "RavenDB"};
 			_documentStore.Initialize();
+		}
+
+		public Bageller FetchById(string id)
+		{
+			Bageller item;
+			using (var session = _documentStore.OpenSession())
+			{
+				item = session.Load<Bageller>(id);
+			}
+			return item;
+		}
+		public Bageller FetchByBagellerId(int id)
+		{
+			return FetchById("bagellers/" + id);
 		}
 
 		public IEnumerable<Bageller> FetchAll()
@@ -54,57 +76,73 @@ namespace BagelClub.Services
 
 		public Bageller Save(Bageller item)
 		{
-			return item.BagellerId == 0 ? Insert(item) : Update(item);
-		}
-		public bool Delete(Bageller item)
-		{
-			return false;
-			bool success;
-			using (var connection = new SqlConnection(_connectionString))
+			var resetDates = false;
+			using (var session = _documentStore.OpenSession())
 			{
-				connection.Open();
-				using (var transaction = connection.BeginTransaction())
+				if (item.BagellerId == 0)
 				{
-					success = connection.Delete(item, transaction);
-					transaction.Commit();
+					//set the Id field
+					var queryable = (from bageller in session.Query<Bageller>()
+					                orderby bageller.Id descending
+					                select bageller.Id).ToList();
+					var orderedQueryable = queryable.Select(x => x.Replace("bagellers/", "").ToSafeInt()).OrderByDescending(x => x);
+					var lastId = orderedQueryable.Take(1).First();
+					item.BagellerId = lastId + 1;
+
+					item.NextPurchaseDate = DateTime.Today.AddMinutes(1);
+					resetDates = true;
+					session.Store(item);
+					session.SaveChanges();
 				}
-				connection.Close();
+				else
+				{
+					var sessionItem = session.Load<Bageller>(item.Id);
+					sessionItem.InjectFrom(item);	//Doing an injection of values because if we just overwrite it, we lose the connection to the session
+					session.SaveChanges();
+				}
 			}
-			return success;
+			if (resetDates) item.NextPurchaseDate = ResetNextPurchaseDates();
+			return item;
 		}
-		private Bageller Insert(Bageller item)
+		public Bageller Delete(int id)
 		{
-			return null;
-			bool success;
-			using (var connection = new SqlConnection(_connectionString))
+			Bageller item = null;
+			using (var session = _documentStore.OpenSession())
 			{
-				connection.Open();
-				using (var transaction = connection.BeginTransaction())
-				{
-					var result = connection.Insert(item, transaction);
-					transaction.Commit();
-					success = result >= 1;
-					item.BagellerId = result;
-				}
-				connection.Close();
+				item = session.Load<Bageller>("bagellers/" + id);
+				session.Delete(item);
+				session.SaveChanges();
 			}
-			return success ? item : null;
+			//Might have deleted a date in middle of sequence, and since we don't want a week without bagels, reset the dates
+			item.NextPurchaseDate = ResetNextPurchaseDates();
+			return item;
 		}
-		private Bageller Update(Bageller item)
+
+		/// <summary>
+		/// Resets all NextPurchaseDates so they are incremental, adding weeks if necessary
+		/// </summary>
+		/// <returns>New start date</returns>
+		public DateTime ResetNextPurchaseDates(int addedWeeks = 0)
 		{
-			return null;
-			bool success;
-			using (var connection = new SqlConnection(_connectionString))
+			var dayOfWeek = (int)DateTime.Today.DayOfWeek;
+			//Get the start of new purchase date sequence
+			var startDate = DateTime.Today
+				.AddDays((dayOfWeek >= 4 ? 11 : 4) - dayOfWeek)
+				.AddDays(addedWeeks*7);
+			using (var session = _documentStore.OpenSession())
 			{
-				connection.Open();
-				using (var transaction = connection.BeginTransaction())
+				var upcomingBagellers = (from bageller in session.Query<Bageller>()
+				                         orderby bageller.NextPurchaseDate ascending
+				                         where bageller.NextPurchaseDate > DateTime.Today
+				                         select bageller).ToList();
+
+				for (var i = 0; i < upcomingBagellers.Count(); i++)
 				{
-					success = connection.Update(item, transaction);
-					transaction.Commit();
+					upcomingBagellers.ElementAt(i).NextPurchaseDate = startDate.AddDays(7*i);
 				}
-				connection.Close();
+				session.SaveChanges();
 			}
-			return success ? item : null;
+			return startDate;
 		}
 	}
 }

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using BagelClub.Models;
 
-namespace BagelClub.Models
+namespace BagelClub.ViewModels
 {
 	public class HomeModel
 	{

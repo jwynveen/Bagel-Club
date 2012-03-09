@@ -51,6 +51,12 @@
     <Reference Include="DapperExtensions">
       <HintPath>..\packages\DapperExtensions.1.3.0\lib\net40\DapperExtensions.dll</HintPath>
     </Reference>
+    <Reference Include="DataAnnotationsExtensions">
+      <HintPath>..\packages\DataAnnotationsExtensions.1.0.2.0\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DataAnnotationsExtensions.ClientValidation">
+      <HintPath>..\packages\DataAnnotationsExtensions.MVC3.1.0.2.0\lib\NETFramework40\DataAnnotationsExtensions.ClientValidation.dll</HintPath>
+    </Reference>
     <Reference Include="FluentScheduler">
       <HintPath>..\packages\FluentScheduler.1.0.7\lib\FluentScheduler.dll</HintPath>
     </Reference>
@@ -70,11 +76,18 @@
       <HintPath>..\packages\log4net.1.2.11\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Omu.ValueInjecter">
+      <HintPath>..\packages\valueinjecter.2.3\lib\Omu.ValueInjecter.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions">
       <HintPath>..\packages\RavenDB.1.0.701\lib\net40\Raven.Abstractions.dll</HintPath>
@@ -87,6 +100,9 @@
     </Reference>
     <Reference Include="Raven.Client.MvcIntegration">
       <HintPath>..\packages\RavenDB.1.0.701\lib\net40\Raven.Client.MvcIntegration.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.2.6.3\lib\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -110,30 +126,43 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.4.4\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\RegisterClientValidationExtensions.cs" />
+    <Compile Include="App_Start\StructuremapMvc.cs" />
+    <Compile Include="Controllers\BagellerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\MailPreviewController.cs" />
+    <Compile Include="DependencyResolution\IoC.cs" />
+    <Compile Include="DependencyResolution\SmDependencyResolver.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Bageller.cs" />
-    <Compile Include="Models\SendBagelsAreHereEmailModel.cs" />
-    <Compile Include="Models\DayBeforeReminderEmailModel.cs" />
-    <Compile Include="Models\HomeModel.cs" />
-    <Compile Include="Models\ShoppingListModel.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\BagelChoice.cs" />
+    <Compile Include="ViewModels\WelcomeEmailModel.cs" />
+    <Compile Include="ViewModels\SendBagelsAreHereEmailModel.cs" />
+    <Compile Include="ViewModels\DayBeforeReminderEmailModel.cs" />
+    <Compile Include="ViewModels\HomeModel.cs" />
+    <Compile Include="ViewModels\ShoppingListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BagellerService.cs" />
     <Compile Include="Services\BagelShopService.cs" />
     <Compile Include="Tasks\TaskRegistry.cs" />
     <Compile Include="Tasks\WeekStartReminderTask.cs" />
+    <Compile Include="ViewModels\BagellerEditModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\glimpse.mvc3.readme.txt" />
     <Content Include="App_Readme\glimpse.readme.txt" />
     <Content Include="Content\Fonts\chunk.svg" />
     <Content Include="Content\Fonts\mtf_chubb.svg" />
+    <Content Include="Content\Scripts\bageller.edit.js" />
     <Content Include="Content\Scripts\dd_belatedpng.js" />
     <Content Include="Content\Scripts\global.js" />
     <Content Include="Content\Scripts\jquery.min.js" />
@@ -207,6 +236,10 @@
     <Content Include="Views\Mail\SendBagelsAreHereEmail.html.cshtml" />
     <Content Include="Views\Mail\SendBagelsAreHereEmail.txt.cshtml" />
     <Content Include="Views\Home\Template.cshtml" />
+    <Content Include="Views\Bageller\Index.cshtml" />
+    <Content Include="Views\Bageller\Edit.cshtml" />
+    <Content Include="Views\Mail\WelcomeEmail.html.cshtml" />
+    <Content Include="Views\Mail\WelcomeEmail.txt.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -76,11 +76,12 @@
 	<script type="text/javascript">	window.jQuery || document.write("<script src='@Url.Content(String.Concat("~/Content/Scripts/jquery.min.js?v=", ViewBag.CacheVersion))'>\x3C/script>")</script>
 	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.17/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.validate.unobtrusive.min.js"></script>
 	<script type="text/javascript" src="@Url.Content(String.Concat("~/Content/Scripts/global.js?v=", ViewBag.CacheVersion))"></script> 
 	<!--[if lt IE 7 ]>
 	<script type="text/javascript" src="@Url.Content(String.Concat("~/Content/Scripts/dd_belatedpng.js?v=", ViewBag.CacheVersion))"></script>
 	<script>DD_belatedPNG.fix('img, .png');</script>
 	<![endif]-->
-
+	@RenderSection("ScriptContent", false)
 </body>
 </html>

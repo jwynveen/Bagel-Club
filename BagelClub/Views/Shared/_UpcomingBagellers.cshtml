@@ -4,7 +4,7 @@
 	@if (Model.Any())
 	{
 	<div class="utility no-print">
-		<button type="button" class="btn btn-edit">Edit</button>
+		<a href="@Url.Action("Index", "Bageller")" class="btn btn-edit">Edit</a>
 	</div>
 	<ul id="upcoming" class="item-list">
 		@foreach (var bageller in Model)

@@ -138,6 +138,8 @@ p, ul {
 	line-height:1.6em;
 }
 
+.small {font-size:.75em;}
+
 /* ================================================== base:tables ===== */
 
 table.super{ }
@@ -232,7 +234,7 @@ textarea:focus {
 
 /* ================================================== base:btns + icons ===== */
 
-.btn {
+.btn, a.btn {
 	display:inline-block;
 	font-family:Chunk, Arial, Helvetica, Sans-Serif;
 	font-size:14px;

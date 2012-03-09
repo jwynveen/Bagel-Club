@@ -1,0 +1,15 @@
+﻿@model WelcomeEmailModel
+@{
+    Layout = null;
+	var appHelper = new Laughlin.Common.AppHelper();
+}
+
+@Model.Bageller.Name,
+
+Welcome to the greatest of all LC clubs: the Bagel Club!
+
+Your initiation shall commence immediately. The first time you need to purchase bagels is @Model.Bageller.NextPurchaseDate.ToShortDateString().
+
+Reminder emails are sent out during the week, and the list of what to purchase is found on the Bagel Club site: @appHelper.BaseUrl
+
+Enjoy the bountiful benefits of bageliciousness!

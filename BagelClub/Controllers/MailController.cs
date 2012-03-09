@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using ActionMailer.Net.Mvc;
 using BagelClub.Models;
+using BagelClub.ViewModels;
 using Laughlin.Common.Extensions;
 
 namespace BagelClub.Controllers
@@ -42,21 +43,38 @@ namespace BagelClub.Controllers
 			return Email("SendDayBeforeReminderEmail", model);
 		}
 
-        public EmailResult SendBagelsAreHereEmail(SendBagelsAreHereEmailModel model)
-        {
-            string emailList = string.Empty;
-        	emailList = !Environment.MachineName.SafeEquals(ConfigurationManager.AppSettings["RunScheduledTasksFromMachineName"], StringComparison.OrdinalIgnoreCase)
-        			? "jwynveen@laughlin.com,tjansen@laughlin.com"
-        			: string.Join(",", model.Bagellers.Select(x => x.Email));
+		public EmailResult SendBagelsAreHereEmail(SendBagelsAreHereEmailModel model)
+		{
+			string emailList = string.Empty;
+			emailList = !Environment.MachineName.SafeEquals(ConfigurationManager.AppSettings["RunScheduledTasksFromMachineName"], StringComparison.OrdinalIgnoreCase)
+					? "jwynveen@laughlin.com,tjansen@laughlin.com"
+					: string.Join(",", model.Bagellers.Select(x => x.Email));
 
-            //They could have multiple emails in the Email column, so join them and then split them
-            foreach (var email in emailList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                To.Add(email);
+			//They could have multiple emails in the Email column, so join them and then split them
+			foreach (var email in emailList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+				To.Add(email);
 
-            From = BagelClubFromEmail;
-            Subject = "Bagels are here!";
-            return Email("SendBagelsAreHereEmail", model);
-        }
+			From = BagelClubFromEmail;
+			Subject = "Bagels are here!";
+			return Email("SendBagelsAreHereEmail", model);
+		}
+
+		public EmailResult WelcomeEmail(WelcomeEmailModel model)
+		{
+			string emailList = string.Empty;
+			emailList = !Environment.MachineName.SafeEquals(ConfigurationManager.AppSettings["RunScheduledTasksFromMachineName"], StringComparison.OrdinalIgnoreCase)
+					? "jwynveen@laughlin.com,tjansen@laughlin.com"
+					: string.Join(",", model.Bageller.Email);
+			BCC.Add("jwynveen@laughlin.com,tjansen@laughlin.com");
+
+			//They could have multiple emails in the Email column, so join them and then split them
+			foreach (var email in emailList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+				To.Add(email);
+
+			From = BagelClubFromEmail;
+			Subject = "Welcome to Bagel Club!";
+			return Email("WelcomeEmail", model);
+		}
 
 	}
 }
