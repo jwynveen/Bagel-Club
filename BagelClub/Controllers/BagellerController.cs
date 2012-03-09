@@ -78,5 +78,11 @@ namespace BagelClub.Controllers
 			TempData["Message"] = "{0} deleted".FormatWith(item.Name);
 			return RedirectToAction("Index");
 		}
+
+		public ActionResult SkipWeek(int id)
+		{
+			_bagellerService.ResetNextPurchaseDates(id);
+			return RedirectToAction("Index");
+		}
 	}
 }
