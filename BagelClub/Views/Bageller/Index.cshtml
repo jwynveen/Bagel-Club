@@ -4,7 +4,10 @@
 	ViewBag.Title = "Index";
 }
 
-<p>@Html.ActionLink("Create New", "Create")</p>
+<p>@Html.ActionLink("Create New", "Edit", new { id = 0 })</p>
+@if (TempData["message"] != null) {
+<p class="error">@TempData["message"]</p>
+}
 <table class="super">
 	<caption>Bagellers</caption>
 	<thead>

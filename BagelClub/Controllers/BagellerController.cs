@@ -23,25 +23,6 @@ namespace BagelClub.Controllers
 			return View(items);
 		}
 
-		public ActionResult Create()
-		{
-			return View();
-		}
-		[HttpPost]
-		public ActionResult Create(FormCollection collection)
-		{
-			try
-			{
-				// TODO: Add insert logic here
-
-				return RedirectToAction("Index");
-			}
-			catch
-			{
-				return View();
-			}
-		}
-		
 		public ActionResult Edit(int id)
 		{
 			var item = id == 0 ? new Bageller() : _bagellerService.FetchByBagellerId(id);
@@ -86,30 +67,11 @@ namespace BagelClub.Controllers
 			return items;
 		}
 
-		//
-		// GET: /Bageller/Delete/5
- 
 		public ActionResult Delete(int id)
 		{
-			return View();
-		}
-
-		//
-		// POST: /Bageller/Delete/5
-
-		[HttpPost]
-		public ActionResult Delete(int id, FormCollection collection)
-		{
-			try
-			{
-				// TODO: Add delete logic here
- 
-				return RedirectToAction("Index");
-			}
-			catch
-			{
-				return View();
-			}
+			var item = _bagellerService.Delete(id);
+			TempData["Message"] = "{0} deleted".FormatWith(item.Name);
+			return RedirectToAction("Index");
 		}
 	}
 }

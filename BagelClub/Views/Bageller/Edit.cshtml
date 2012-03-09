@@ -7,7 +7,7 @@
 <script type="text/javascript" src="@Url.Content(String.Concat("~/Content/Scripts/bageller.edit.js?v=", ViewBag.CacheVersion))"></script> 
 <script type="text/javascript">
 $(function(){
-	Bageller.NextIndex = @Model.Item.Choices.Count();
+	Bageller.NextIndex = @(!Model.Item.Choices.IsNullOrEmpty() ? Model.Item.Choices.Count() : 0);
 	Bageller.ListSelector = '#choice-list';
 	$( "#choice-list" ).sortable({
 		update: function (){ Bageller.RefreshIndices(); }
@@ -16,7 +16,7 @@ $(function(){
 });
 </script>
 }
-<h2>Edit</h2>
+<h2>@(Model.IsNew ? "New Bageller Sign-up" : "Edit")</h2>
 
 @using (Html.BeginForm())
 {
@@ -44,38 +44,46 @@ $(function(){
 
 		<div>
 			@Html.LabelFor(model => model.Item.Choices)
+			<span class="small">Add what bagel you want from each location and drag to re-order them in your order of preference</span>
 			<div>
 				<div id="choice-template" style="display:none;">
 					<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
-					@Html.DropDownList("Item.Choices{index}.Location.LocationId", Model.ChoiceLocations, new { @class = "dynamic-required", @id = "", data_val = "true", data_val_required = "Choice location is required", data_val_number = "Choice location is required" })
-					@Html.TextBox("Item.Choices{index}.Bagel", null, new { placeholder = "Bagel selection", @class = "dynamic-required", @id = "", data_val = "true", data_val_required = "Choice bagel is required" })
+					@Html.DropDownList("Item.Choices{index}.Location.LocationId", Model.ChoiceLocations, new { @class = "dynamic-required", @id = "", data_val = "true", data_val_required = "Bagel location is required", data_val_number = "Bagel location is required" })
+					@Html.TextBox("Item.Choices{index}.Bagel", null, new { placeholder = "Bagel selection", @class = "dynamic-required", @id = "", data_val = "true", data_val_required = "Bagel selection is required" })
 					<a href="javascript:;" onclick="$(this).parent().remove();">Remove</a>
 				</div>
 				<a href="javascript:;" onclick="Bageller.Add('#choice-template');">Add</a>
 				<ul id="choice-list" class="reduced">
-				@for (int j = 0; j < Model.Item.Choices.Count(); j++)
-	{
-		var locations = new List<SelectListItem>();
-		locations.AddRange(Model.ChoiceLocations.Select(x => new SelectListItem { Text = x.Text, Value = x.Value }));
-		locations.First(x => x.Value == Model.Item.Choices.ElementAt(j).Location.LocationId.ToString()).Selected = true;
-					<li class="ui-state-default">
-						<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
-						@Html.DropDownList("Item.Choices[" + j + "].Location.LocationId", locations, new { @class = "dynamic-required", @id = "" })
-						@Html.TextBox("Item.Choices[" + j + "].Bagel", Model.Item.Choices.ElementAt(j).Bagel, new { placeholder = "Bagel selection", @class = "dynamic-required", @id = "" })
-						<a href="javascript:;" onclick="Bageller.Remove(this);">Remove</a>
-					</li>
-	}
+				@if (!Model.Item.Choices.IsNullOrEmpty()) {
+					for (int j = 0; j < Model.Item.Choices.Count(); j++)
+					{
+						var locations = new List<SelectListItem>();
+						locations.AddRange(Model.ChoiceLocations.Select(x => new SelectListItem { Text = x.Text, Value = x.Value }));
+						locations.First(x => x.Value == Model.Item.Choices.ElementAt(j).Location.LocationId.ToString()).Selected = true;
+						<li class="ui-state-default">
+							<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+							@Html.DropDownList("Item.Choices[" + j + "].Location.LocationId", locations, new { @class = "dynamic-required", @id = "", data_val = "true", data_val_required = "Bagel location is required", data_val_number = "Bagel location is required" })
+							@Html.TextBox("Item.Choices[" + j + "].Bagel", Model.Item.Choices.ElementAt(j).Bagel, new { placeholder = "Bagel selection", @class = "dynamic-required", @id = "", data_val = "true", data_val_required = "Bagel selection is required" })
+							<a href="javascript:;" onclick="Bageller.Remove(this);">Remove</a>
+						</li>
+					}
+				}
 				</ul>
 			</div>
 		</div>
 
+		@if (!Model.IsNew) { 
 		<div>
 			@Html.LabelFor(model => model.Item.NextPurchaseDate)
 			@Html.DisplayFor(model => model.Item.NextPurchaseDate)
 		</div>
+		}
 
 		<p>
 			<button type="submit" class="btn btn-submit">Save</button>
+			@if (!Model.IsNew) {
+			<a href="@Url.Action("Delete", new { id = Model.Item.BagellerId })">Delete</a>
+			}
 		</p>
 	</fieldset>
 }

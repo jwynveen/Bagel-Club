@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BagelClub.Models;
+using Laughlin.Common.Extensions;
 using Omu.ValueInjecter;
 using Raven.Client.Document;
 
@@ -15,7 +17,7 @@ namespace BagelClub.Services
 		void SetNextPurchaseDate(Bageller nextBageller);
 
 		Bageller Save(Bageller item);
-		bool Delete(Bageller item);
+		Bageller Delete(int id);
 	}
 	public class BagellerService : IBagellerService
 	{
@@ -77,7 +79,24 @@ namespace BagelClub.Services
 			{
 				if (item.BagellerId == 0)
 				{
-					//item.Id = GetNextId()
+					//set the Id field
+					var queryable = (from bageller in session.Query<Bageller>()
+					                orderby bageller.Id descending
+					                select bageller.Id).ToList();
+					var orderedQueryable = queryable.Select(x => x.Replace("bagellers/", "").ToSafeInt()).OrderByDescending(x => x);
+					var lastId = orderedQueryable.Take(1).First();
+					item.BagellerId = lastId + 1;
+
+					//set the NextPurchaseDate and increment all others
+					var allBagellers = from bageller in session.Query<Bageller>()
+					                   orderby bageller.NextPurchaseDate ascending
+									   where bageller.NextPurchaseDate > DateTime.Today.AddDays(4)
+					                   select bageller;
+					item.NextPurchaseDate = allBagellers.First().NextPurchaseDate;
+					foreach (var currentBageller in allBagellers)
+					{
+						currentBageller.NextPurchaseDate = currentBageller.NextPurchaseDate.AddDays(7);
+					}
 					session.Store(item);
 					session.SaveChanges();
 				}
@@ -90,21 +109,16 @@ namespace BagelClub.Services
 			}
 			return item;
 		}
-		public bool Delete(Bageller item)
+		public Bageller Delete(int id)
 		{
-			return false;
-			/*bool success;
-			using (var connection = new SqlConnection(_connectionString))
+			Bageller item = null;
+			using (var session = _documentStore.OpenSession())
 			{
-				connection.Open();
-				using (var transaction = connection.BeginTransaction())
-				{
-					success = connection.Delete(item, transaction);
-					transaction.Commit();
-				}
-				connection.Close();
+				item = session.Load<Bageller>("bagellers/" + id);
+				session.Delete(item);
+				session.SaveChanges();
 			}
-			return success;*/
+			return item;
 		}
 	}
 }

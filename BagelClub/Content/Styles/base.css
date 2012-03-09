@@ -138,6 +138,8 @@ p, ul {
 	line-height:1.6em;
 }
 
+.small {font-size:.75em;}
+
 /* ================================================== base:tables ===== */
 
 table.super{ }

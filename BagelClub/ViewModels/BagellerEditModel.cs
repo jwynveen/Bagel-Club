@@ -10,5 +10,7 @@ namespace BagelClub.ViewModels
 		public Bageller Item { get; set; }
 		public IEnumerable<SelectListItem> Locations { get; set; }
 		public IEnumerable<SelectListItem> ChoiceLocations { get; set; }
+
+		public bool IsNew { get { return Item.BagellerId <= 0; }}
 	}
 }

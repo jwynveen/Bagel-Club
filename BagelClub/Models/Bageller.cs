@@ -3,22 +3,32 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Laughlin.Common.Extensions;
+using Newtonsoft.Json;
 
 namespace BagelClub.Models
 {
 	public class Bageller
 	{
+		public Bageller()
+		{
+			Choices = (from BagelShopType bagelShopType in Enum.GetValues(typeof (BagelShopType))
+			           select new BagelChoice {Location = new Location {LocationId = (int) bagelShopType}}).ToList();
+		}
 		public string Id { get; set; }
-		public int BagellerId { get { return Id.Replace("bagellers/", string.Empty).ToSafeInt(); } }
+		[JsonIgnore]
+		public int BagellerId
+		{
+			get { return (Id ?? string.Empty).Replace("bagellers/", string.Empty).ToSafeInt(); }
+			set { Id = "bagellers/" + value; }
+		}
 		[Required]
 		public string Name { get; set; }
 		[Required]
 		public string Email { get; set; }
+		[Display(Name = "What you want from where...")]
 		public IEnumerable<BagelChoice> Choices { get; set; }
-//		public string Brueggers { get; set; }
-//		public string Einstein { get; set; }
-//		public string Sendiks { get; set; }
-		[Display(Name = "Purchase Location")]
+
+		[Display(Name = "Where are you buying from?")]
 		public Location PurchaseLocation { get; set; }
 
 		[Display(Name = "Next Purchase Date")]
@@ -41,6 +51,7 @@ namespace BagelClub.Models
 	public class Location
 	{
 		public string Id { get; set; }
+		[JsonIgnore]
 		public int LocationId
 		{
 			get { return (Id??string.Empty).Replace("locations/", string.Empty).ToSafeInt(); }
