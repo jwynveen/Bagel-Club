@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using BagelClub.Models;
 using Laughlin.Common.Extensions;
 
-namespace BagelClub.Models
+namespace BagelClub.ViewModels
 {
 	public class ShoppingListModel
 	{

@@ -44,7 +44,12 @@ namespace BagelClub.Controllers
 				model.Item = _bagellerService.FetchByBagellerId(id);
 				TryUpdateModel(model);
 				
-				_bagellerService.Save(model.Item);
+				var item = _bagellerService.Save(model.Item);
+				if (id == 0)
+				{
+					new MailController().WelcomeEmail(new WelcomeEmailModel {Bageller = item}).Deliver();
+					return RedirectToAction("Index", "Home");
+				}
 
 				return RedirectToAction("Index");
 			}

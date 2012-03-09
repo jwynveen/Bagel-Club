@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using BagelClub.ViewModels;
 using DataAnnotationsExtensions;
 using Laughlin.Common.Extensions;
 using Newtonsoft.Json;
@@ -47,30 +48,6 @@ namespace BagelClub.Models
 		public override string ToString()
 		{
 			return Name;
-		}
-	}
-
-	public class Location
-	{
-		public string Id { get; set; }
-		[JsonIgnore]
-		public int LocationId
-		{
-			get { return (Id??string.Empty).Replace("locations/", string.Empty).ToSafeInt(); }
-			set { Id = "locations/" + value; }
-		}
-		public string Name { get; set; }
-		public BagelShopType BagelShop { get { return (BagelShopType) LocationId; } }
-	}
-
-	public class BagelChoice
-	{
-		public string Bagel { get; set; }
-		public Location Location { get; set; }
-		public int Ordering { get; set; }
-		public override string ToString()
-		{
-			return Bagel;
 		}
 	}
 }

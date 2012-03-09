@@ -15,7 +15,7 @@ namespace BagelClub.Services
 		Bageller FetchByBagellerId(int id);
 		Bageller GetLastBageller();
 		void SetNextPurchaseDate(Bageller nextBageller);
-		void ResetNextPurchaseDates(int addedWeeks = 0);
+		DateTime ResetNextPurchaseDates(int addedWeeks = 0);
 
 		Bageller Save(Bageller item);
 		Bageller Delete(int id);
@@ -101,7 +101,7 @@ namespace BagelClub.Services
 					session.SaveChanges();
 				}
 			}
-			if (resetDates) ResetNextPurchaseDates();
+			if (resetDates) item.NextPurchaseDate = ResetNextPurchaseDates();
 			return item;
 		}
 		public Bageller Delete(int id)
@@ -114,14 +114,15 @@ namespace BagelClub.Services
 				session.SaveChanges();
 			}
 			//Might have deleted a date in middle of sequence, and since we don't want a week without bagels, reset the dates
-			ResetNextPurchaseDates();
+			item.NextPurchaseDate = ResetNextPurchaseDates();
 			return item;
 		}
 
 		/// <summary>
 		/// Resets all NextPurchaseDates so they are incremental, adding weeks if necessary
 		/// </summary>
-		public void ResetNextPurchaseDates(int addedWeeks = 0)
+		/// <returns>New start date</returns>
+		public DateTime ResetNextPurchaseDates(int addedWeeks = 0)
 		{
 			var dayOfWeek = (int)DateTime.Today.DayOfWeek;
 			//Get the start of new purchase date sequence
@@ -141,6 +142,7 @@ namespace BagelClub.Services
 				}
 				session.SaveChanges();
 			}
+			return startDate;
 		}
 	}
 }

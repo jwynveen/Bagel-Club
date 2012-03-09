@@ -1,4 +1,6 @@
-﻿namespace BagelClub.Models
+﻿using BagelClub.Models;
+
+namespace BagelClub.ViewModels
 {
 	public class DayBeforeReminderEmailModel
 	{

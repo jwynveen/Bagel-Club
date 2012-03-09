@@ -5,6 +5,7 @@ using System.Text;
 using System.Web.Mvc;
 using BagelClub.Models;
 using BagelClub.Services;
+using BagelClub.ViewModels;
 using Laughlin.Common.Extensions;
 using Laughlin.Common.Utilities;
 using StructureMap;
