@@ -62,7 +62,7 @@ namespace BagelClub.Services
 			{
 				lastBageller = (from bageller in session.Query<Bageller>()
 				                orderby bageller.NextPurchaseDate descending
-				                select bageller).Take(1).SingleOrDefault();
+				                select bageller).FirstOrDefault();
 			}
 			return lastBageller;
 		}
