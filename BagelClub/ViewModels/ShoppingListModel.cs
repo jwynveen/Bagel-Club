@@ -15,7 +15,7 @@ namespace BagelClub.ViewModels
 		public ShoppingListModel(IEnumerable<BagelShop> locations, IEnumerable<Bageller> bagellers)
 		{
 			Locations = locations;
-			Bagellers = bagellers.OrderBy(x => x.Name);
+			Bagellers = bagellers != null ? bagellers.OrderBy(x => x.Name) : bagellers;
 		}
 		public IEnumerable<BagelShop> Locations { get; set; }
 		public IEnumerable<Bageller> Bagellers { get; set; }
