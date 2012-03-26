@@ -54,7 +54,7 @@ namespace BagelClub.Controllers
 				bagellerService.SetNextPurchaseDate(nextBageller);
 				bagellerService.Save(nextBageller);
 
-				bagellers = bagellerService.FetchAll();
+				bagellers = bagellerService.FetchAll().OrderBy(x => x.NextPurchaseDate);
 				nextBageller = bagellers.First();
 			}
 			new MailController().SendWeekStartReminderEmail(bagellers).DeliverAsync();
