@@ -124,6 +124,19 @@ namespace BagelClub.Services
 		/// <returns>New start date</returns>
 		public DateTime ResetNextPurchaseDates(int addedWeeks = 0)
 		{
+			//first we'll set the next purchase dates for bagellers who have already made their purchase
+			var bagellers = FetchAll();
+			var nextBageller = bagellers.First();
+			while (nextBageller.NextPurchaseDate.IsBefore(DateTime.Now))
+			{
+				SetNextPurchaseDate(nextBageller);
+				Save(nextBageller);
+
+				bagellers = FetchAll().OrderBy(x => x.NextPurchaseDate);
+				nextBageller = bagellers.First();
+			}
+
+			//Now we can reset the rest of the dates incrementally
 			var dayOfWeek = (int)DateTime.Today.DayOfWeek;
 			//Get the start of new purchase date sequence
 			var startDate = DateTime.Today
