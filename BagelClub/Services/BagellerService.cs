@@ -89,7 +89,7 @@ namespace BagelClub.Services
 					var lastId = orderedQueryable.Take(1).First();
 					item.BagellerId = lastId + 1;
 
-					item.NextPurchaseDate = DateTime.Today.AddMinutes(1);
+					item.NextPurchaseDate = DateTime.Now.AddMinutes(1);
 					resetDates = true;
 					session.Store(item);
 					session.SaveChanges();
