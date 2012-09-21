@@ -167,12 +167,13 @@
     <Content Include="Content\Scripts\global.js" />
     <Content Include="Content\Scripts\jquery.min.js" />
     <Content Include="Content\Scripts\modernizr.min.js" />
-    <Content Include="Content\Styles\base.css" />
     <Content Include="Content\Styles\global.css" />
-    <Content Include="Content\Styles\handheld.css" />
-    <Content Include="Content\Styles\print.css" />
-    <Content Include="Content\Styles\reset.css" />
-    <Content Include="Content\Styles\page.css" />
+    <None Include="Content\Styles\sass\_base.scss" />
+    <None Include="Content\Styles\sass\global.scss" />
+    <None Include="Content\Styles\sass\_handheld.scss" />
+    <None Include="Content\Styles\sass\_page.scss" />
+    <None Include="Content\Styles\sass\_print.scss" />
+    <None Include="Content\Styles\sass\_reset.scss" />
     <Content Include="Global.asax" />
     <Content Include="humans.txt" />
     <Content Include="robots.txt" />
@@ -185,7 +186,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Styles\jquery-ui.css" />
+    <None Include="Content\Styles\sass\_jquery-ui.scss" />
     <Content Include="Content\Images\ui\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\Images\ui\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\Images\ui\ui-bg_glass_55_fbf9ee_1x400.png" />

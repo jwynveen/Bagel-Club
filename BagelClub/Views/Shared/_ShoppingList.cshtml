@@ -6,7 +6,7 @@
 		<option value="bageller">By Bageller</option>
 	</select>
 	<select name="bagel-shop-type">
-		<option value="">All</option>
+		<option value="">All Locations</option>
 	@foreach(BagelShopType shopType in Enum.GetValues(typeof(BagelShopType)))
 	{
 		<option value="-@shopType.ToString()">@shopType.GetName()</option>

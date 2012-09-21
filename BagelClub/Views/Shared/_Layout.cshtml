@@ -38,7 +38,6 @@
 			<hgroup id="branding">
 				<h1 id="site-title">@Html.ActionLink("bagel club", "Index", "Home")</h1>
 			</hgroup>
-			<div id="logindisplay">&nbsp;</div>
 			<nav id="nav" class="no-print" role="navigation">
 				<h1 class="assistive-text">Main Navigation</h1>
 				<div class="skip-link"><a class="assistive-text" href="#content" title="Skip to primary content">Skip to primary content</a></div>
@@ -46,6 +45,7 @@
                 <ul id="menu-primary" class="menu group">
                     <li class="nav-main0">@Html.ActionLink("Home", "Index", "Home")</li>
                     <li class="nav-main1">@Html.ActionLink("About", "About", "Home")</li>
+                    <li class="nav-main1">@Html.ActionLink("Admin", "Bageller", "Home")</li>
                 </ul>
             </nav>
 		</header>

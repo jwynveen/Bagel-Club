@@ -1,3 +1,5 @@
+/* == RESET Stylesheet == */
+
 /* ================================================== RESET (eric meyer v2.0 | 20110126) ===== */
 
 html, body, div, span, applet, object, iframe,
@@ -164,67 +166,3 @@ button::-moz-focus-inner, input::-moz-focus-inner { border:0; padding:0; }
 
 select[multiple], textarea { overflow:auto; vertical-align:top; }
 
-fieldset.super > div, fieldset.super > fieldset > div { margin:1em 0; }
-
-/* ===== defaults ===== */
-
-.large { font-size:1.5em; }
-
-.small { font-size:10px; }
-
-.nowrap { white-space:nowrap; }
-
-.block { display:block; }
-
-.textcenter { text-align:center; }
-
-.textright { text-align:right; }
-
-.textleft { text-align:left; }
-
-.right, .alignright { _display:inline; margin:0 0 1em 1em; float:right; }
-
-.left, .alignleft { _display:inline; margin:0 1em 1em 0; float:left; }
-
-.center, .aligncenter { display:block; margin:0 auto; clear:both; }
-
-.col { float:left; }
-
-.clear-right { clear:right; }
-
-.clear-left { clear:left; }
-
-.clearfix:before, .clearfix:after, .group:before, .group:after, .row:before, .row:after { content:""; display:table; }
-
-.clear, .clearfix:after, .group:after, .row:after { clear:both; }
-
-.clearfix, .group, .row { *zoom:1; }
-
-.reduced-top { margin-top:0; }
-
-.reduced { padding:0; border:none; margin:0; list-style:none; }
-
-.ir, .hid { display:block; background-repeat:no-repeat; direction:ltr; text-align:left; text-indent:-999em; overflow:hidden; }
-
-.hidden, .hide, .print, .hr hr { display:none; visibility:hidden; }
-
-.visuallyhidden { position:absolute; padding:0; width:1px; height:1px; border:0; margin:-1px; clip:rect(0 0 0 0); overflow:hidden; }
-
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus { position:static; width:auto; height:auto; margin:0; clip:auto; overflow:visible; }
-
-.invisible { visibility:hidden; }
-
-.assistive-text { position:absolute !important; clip:rect(1px 1px 1px 1px); clip:rect(1px, 1px, 1px, 1px); }
-
-a.assistive-text:active, a.assistive-text:focus { position:absolute; top:0; left:7.6%; background:#eee; border-bottom:1px solid #ddd; color:#1982d1; font-size:12px; text-decoration:underline; clip:auto !important; }
-
-/* ===== ie ===== */
-
-.lte8 .relative { position:relative; }
-
-.lte8 .static { position:static; }
-
-.lte7 .inline { display:inline-block; *display:inline-block; *display:inline; zoom:1; }
-
-.ie6 .height { height:1%; }
